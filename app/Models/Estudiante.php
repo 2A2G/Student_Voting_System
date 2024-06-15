@@ -23,5 +23,4 @@ class Estudiante extends Model
         return $this->belongsTo(Curso::class);
     }
 
-
 }

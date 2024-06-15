@@ -15,15 +15,23 @@ class Postulante extends Model
     protected $fillable = [
         'estudiante_id',
         'cargo_id',
+        'cantidadVotos'
     ];
+
+    public function cargo()
+    {
+        return $this->belongsTo(Cargo::class);
+    }
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class);
+    }
 
     public function estudiante()
     {
         return $this->belongsTo(Estudiante::class);
     }
 
-    public function cargo()
-    {
-        return $this->belongsTo(Cargo::class);
-    }
+
 }

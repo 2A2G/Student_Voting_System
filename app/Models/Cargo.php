@@ -21,7 +21,4 @@ class Cargo extends Model
         return $this->hasMany(Postulante::class);
     }
 
-
-
-
 }

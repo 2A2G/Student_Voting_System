@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('estudiante_id')->constrained('estudiantes');
             $table->foreignId('cargo_id')->constrained('cargos');
+            $table->integer('cantidadVotos')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
