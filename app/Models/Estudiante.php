@@ -12,6 +12,7 @@ class Estudiante extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'numeroIdentidad',
         'nombreEstudiante',
         'apellidoEstudiante',
         'curso_id',

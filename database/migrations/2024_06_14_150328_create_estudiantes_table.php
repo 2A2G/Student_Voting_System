@@ -12,6 +12,7 @@ return new class extends Migration {
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
+            $table->string('numeroIdentidad');
             $table->string('nombreEstudiante');
             $table->string('apellidoEstudiante');
             $table->foreignId('curso_id')->constrained('cursos');

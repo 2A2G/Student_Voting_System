@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Curso;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class EstudianteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'numeroIdentidad' => $this->faker->unique()->randomNumber(9),
+            'nombreEstudiante' => $this->faker->firstName(),
+            'apellidoEstudiante' => $this->faker->lastName(),
+            'curso_id' => $this->faker->randomElement(Curso::pluck('id')->toArray())
+
         ];
     }
 }
