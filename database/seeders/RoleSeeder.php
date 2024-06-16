@@ -19,7 +19,6 @@ class RoleSeeder extends Seeder
             'admin' => Role::create(['name' => 'admin']),
             'secretaria' => Role::create(['name' => 'secretaria']),
             'docente' => Role::create(['name' => 'docente']),
-            'invitado' => Role::create(['name' => 'invitado']),
         ];
 
         // Crear permisos y asignarlos a roles
@@ -48,12 +47,10 @@ class RoleSeeder extends Seeder
             'edit cargo' => ['super-admin', 'admin'],
             'delete cargo' => ['super-admin'],
 
-            'votar' => ['invitado'],
-
-            'ver votos' => ['super-admin', 'admin', 'secretaria', 'docente', 'invitado'],
+            'ver votos' => ['super-admin', 'admin', 'secretaria', 'docente'],
             'inicar votacion' => ['super-admin', 'admin'],
             'cerrar votacion' => ['super-admin', 'admin'],
-            'ver resultados' => ['super-admin', 'admin', 'secretaria', 'docente', 'invitado'],
+            'ver resultados' => ['super-admin', 'admin', 'secretaria', 'docente'],
         ];
 
         foreach ($permissions as $permissionName => $roleNames) {

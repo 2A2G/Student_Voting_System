@@ -28,7 +28,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => 'Aldair',
-            'email' => 'admin@INEFRAPASA.com',
+            'email' => 'admin@inefrapasa.com',
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'two_factor_secret' => null,
