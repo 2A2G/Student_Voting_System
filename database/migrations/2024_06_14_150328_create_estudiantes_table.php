@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('numeroIdentidad');
             $table->string('nombreEstudiante');
             $table->string('apellidoEstudiante');
+            $table->string('sexo');
             $table->foreignId('curso_id')->constrained('cursos');
             $table->softDeletes();
             $table->timestamps();

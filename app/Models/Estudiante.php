@@ -15,6 +15,7 @@ class Estudiante extends Model
         'numeroIdentidad',
         'nombreEstudiante',
         'apellidoEstudiante',
+        'sexo',
         'curso_id',
     ];
 
