@@ -1,4 +1,4 @@
-<div id="chart" style="width: 100%; height: auto;">
+<div wire:ignore id="chart" style="width: 100%; height: auto;">
 </div>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
@@ -13,7 +13,7 @@
         chart: {
             type: 'bar',
             height: 350,
-            width: '100%', // Ajusta el ancho del gráfico al 100% del contenedor
+            widt|h: '100%', // Ajusta el ancho del gráfico al 100% del contenedor
             // Puedes ajustar otras opciones del gráfico según necesites
         },
         plotOptions: {

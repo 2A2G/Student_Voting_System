@@ -1,5 +1,5 @@
 <div class="mt-12">
-    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4">
+    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 justify-center">
         <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
             <div
                 class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -109,48 +109,36 @@
                 </h1>
             </div>
         </div>
-        <div class="row mt-4 justify-content-center">
-            <div class="col-md-12">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mx-auto">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    Nombre del producto
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Color
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Categoría
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Acción
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Apple MacBook Pro 17"
-                                </td>
-                                <td class="px-6 py-4">
-                                    Silver
-                                </td>
-                                <td class="px-6 py-4">
-                                    Laptop
-                                </td>
-                                <td class="px-6 py-4">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Descargar</a>
-                                </td>
-                            </tr>
-                            <!-- Otros productos pueden ir aquí -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+       @livewire('diagramas.table', [
+                'columns' => ['Nombre del rol', 'Fecha de creación', 'Estado', 'Acciones'],
+                'data' => [
+                    [
+                        'Nombre del rol' => 'Super Admin',
+                        'Fecha de creación' => '2024-06-18',
+                        'Estado' => 'Activo',
+                        'Acciones' => 'Editar | Eliminar',
+                    ],
+                    [
+                        'Nombre del rol' => 'Admin',
+                        'Fecha de creación' => '2024-06-18',
+                        'Estado' => 'Activo',
+                        'Acciones' => 'Editar | Eliminar',
+                    ],
+                    [
+                        'Nombre del rol' => 'Usuario',
+                        'Fecha de creación' => '2024-06-18',
+                        'Estado' => 'Activo',
+                        'Acciones' => 'Editar | Eliminar',
+                    ],
+                    [
+                        'Nombre del rol' => 'Usuario',
+                        'Fecha de creación' => '2024-06-18',
+                        'Estado' => 'Activo',
+                        'Acciones' => 'Editar | Eliminar',
+                    ],
+                ],
+            ])
+
     </div>
 
 

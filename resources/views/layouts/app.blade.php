@@ -24,12 +24,8 @@
     <x-banner />
 
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        @livewire('navigation-menu')
-        <!-- Page Content -->
         <div class="flex">
-            <div class="w-56 fixed h-full bg-gray-200 dark:bg-gray-800">
-                <x-sidebar-menu />
-            </div>
+            @livewire('sidebar-menu')
 
             <main class="flex-1 ml-60 min-h-screen">
                 {{ $slot }}
