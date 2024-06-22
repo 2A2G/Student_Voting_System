@@ -2,12 +2,27 @@
 
 namespace App\Livewire\SuperAdmin;
 
+use App\Models\Estudiante;
+use App\Models\User;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Estadistica extends Component
 {
     public function render()
     {
-        return view('livewire.super-admin.estadistica');
+
+        $totalRoles = Role::count();
+        $totalUserP = User::count();
+        $totalEstudinates = Estudiante::count();
+        // $totalDocentes = User::get('rol', 'docente')->count();
+        return view(
+            'livewire.super-admin.estadistica',
+            [
+                'totalRoles' => $totalRoles,
+                'totalUserP' => $totalUserP,
+                'totalEstudinates' => $totalEstudinates,
+            ]
+        );
     }
 }

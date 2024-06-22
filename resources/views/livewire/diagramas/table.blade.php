@@ -17,7 +17,6 @@
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             @foreach ($dataI as $n)
                                 <td class="px-6 py-4">
-                                    
                                     {{ $row[$n] }}
                                 </td>
                             @endforeach
@@ -29,6 +28,10 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- Pagination Links -->
+        <div class="mt-4">
+            {{ $pagination->links() }} <!-- Muestra los enlaces de paginación -->
+        </div>
     </div>
 </div>
- 

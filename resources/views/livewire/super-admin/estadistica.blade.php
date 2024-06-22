@@ -20,7 +20,7 @@
                 </p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    $53k</h4>
+                    {{ $totalUserP }}</h4>
             </div>
         </div>
         <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
@@ -38,7 +38,7 @@
                     Estudiantes</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    2,300</h4>
+                    {{ $totalEstudinates }}</h4>
             </div>
 
         </div>
@@ -76,7 +76,7 @@
                 </p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    $103,430</h4>
+                    {{ $totalRoles }}</h4>
             </div>
 
         </div>
@@ -109,35 +109,35 @@
                 </h1>
             </div>
         </div>
-       @livewire('diagramas.table', [
-                'columns' => ['Nombre del rol', 'Fecha de creación', 'Estado', 'Acciones'],
-                'data' => [
-                    [
-                        'Nombre del rol' => 'Super Admin',
-                        'Fecha de creación' => '2024-06-18',
-                        'Estado' => 'Activo',
-                        'Acciones' => 'Editar | Eliminar',
-                    ],
-                    [
-                        'Nombre del rol' => 'Admin',
-                        'Fecha de creación' => '2024-06-18',
-                        'Estado' => 'Activo',
-                        'Acciones' => 'Editar | Eliminar',
-                    ],
-                    [
-                        'Nombre del rol' => 'Usuario',
-                        'Fecha de creación' => '2024-06-18',
-                        'Estado' => 'Activo',
-                        'Acciones' => 'Editar | Eliminar',
-                    ],
-                    [
-                        'Nombre del rol' => 'Usuario',
-                        'Fecha de creación' => '2024-06-18',
-                        'Estado' => 'Activo',
-                        'Acciones' => 'Editar | Eliminar',
-                    ],
+        @livewire('diagramas.table', [
+            'columns' => ['Nombre del rol', 'Fecha de creación', 'Estado', 'Acciones'],
+            'data' => [
+                [
+                    'Nombre del rol' => 'Super Admin',
+                    'Fecha de creación' => '2024-06-18',
+                    'Estado' => 'Activo',
+                    'Acciones' => 'Editar | Eliminar',
                 ],
-            ])
+                [
+                    'Nombre del rol' => 'Admin',
+                    'Fecha de creación' => '2024-06-18',
+                    'Estado' => 'Activo',
+                    'Acciones' => 'Editar | Eliminar',
+                ],
+                [
+                    'Nombre del rol' => 'Usuario',
+                    'Fecha de creación' => '2024-06-18',
+                    'Estado' => 'Activo',
+                    'Acciones' => 'Editar | Eliminar',
+                ],
+                [
+                    'Nombre del rol' => 'Usuario',
+                    'Fecha de creación' => '2024-06-18',
+                    'Estado' => 'Activo',
+                    'Acciones' => 'Editar | Eliminar',
+                ],
+            ],
+        ])
 
     </div>
 

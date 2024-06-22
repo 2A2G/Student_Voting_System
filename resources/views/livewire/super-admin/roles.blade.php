@@ -16,7 +16,7 @@
                     Roles</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    2,300</h4>
+                    {{$totalRoles}}</h4>
             </div>
 
         </div>
@@ -35,7 +35,7 @@
                 </p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    $103,430</h4>
+                    {{$totalPermisos}}</h4>
             </div>
         </div>
     </div>

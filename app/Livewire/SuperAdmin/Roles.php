@@ -42,10 +42,17 @@ class Roles extends Component
         $this->open = false;
     }
 
-    
+
 
     public function render()
     {
-        return view('livewire.super-admin.roles');
+        $totalRoles = Role::count();
+        $totalPermisos = Permission::count();
+
+        // Pasa estos datos a la vista
+        return view('livewire.super-admin.roles', [
+            'totalRoles' => $totalRoles,
+            'totalPermisos' => $totalPermisos
+        ]);
     }
 }

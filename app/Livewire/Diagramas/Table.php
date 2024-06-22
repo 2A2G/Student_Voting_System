@@ -21,39 +21,44 @@ class Table extends Component
     public function datos()
     {
         switch ($this->case) {
-            case ('roles'):
-                $this->data = Role::get(['id', 'name']);
+            case 'roles':
+                $rolesPaginated = Role::paginate(10, ['id', 'name']);
+                $this->data = $rolesPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
-
-                $this->columns = ['ID', 'Nombre del permiso'];
+                $this->columns = ['ID', 'Nombre del Rol'];
                 break;
-            case ('permisos'):
-                $this->data = Permission::get(['id', 'name']);
+            case 'permisos':
+                $permissionsPaginated = Permission::paginate(10, ['id', 'name']);
+                $this->data = $permissionsPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
-
-                $this->columns = ['ID', 'Nombre del permiso',];
+                $this->columns = ['ID', 'Nombre del Permiso'];
                 break;
             default:
-                $this->data = collect(Role::get(['id', 'name']));
+                $defaultPaginated = Role::paginate(10, ['id', 'name']);
+                $this->data = $defaultPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
-
-                $this->columns = ['ID', 'Nombre del permiso',];
+                $this->columns = ['ID', 'Nombre del Rol'];
                 break;
-
         }
 
-
+        // Devolver la colección paginada completa para la vista
+        return $rolesPaginated ?? $permissionsPaginated ?? $defaultPaginated;
     }
+
 
 
     public function mount($columns = [], $data = [])
     {
         $this->datos();
-
     }
 
     public function render()
     {
-        return view('livewire.diagramas.table');
+        $paginatedData = $this->datos();
+        return view('livewire.diagramas.table', [
+            'data' => $this->data,
+            'pagination' => $paginatedData // Pasa la colección paginada completa
+        ]);
     }
+
 }
