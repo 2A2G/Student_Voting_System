@@ -33,6 +33,12 @@ class Table extends Component
                 $this->dataI = ['id', 'name'];
                 $this->columns = ['ID', 'Nombre del Permiso'];
                 break;
+
+            // case 'descargas':
+
+            //     $this->columns = ['ID', 'Nombre del archivo'];
+            //     break;
+
             default:
                 $defaultPaginated = Role::paginate(10, ['id', 'name']);
                 $this->data = $defaultPaginated->items();  // Solo los datos de la página actual
@@ -60,5 +66,4 @@ class Table extends Component
             'pagination' => $paginatedData // Pasa la colección paginada completa
         ]);
     }
-
 }

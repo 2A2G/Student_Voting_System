@@ -109,36 +109,8 @@
                 </h1>
             </div>
         </div>
-        
-        @livewire('diagramas.table', [
-            'columns' => ['Nombre del rol', 'Fecha de creación', 'Estado', 'Acciones'],
-            'data' => [
-                [
-                    'Nombre del rol' => 'Super Admin',
-                    'Fecha de creación' => '2024-06-18',
-                    'Estado' => 'Activo',
-                    'Acciones' => 'Editar | Eliminar',
-                ],
-                [
-                    'Nombre del rol' => 'Admin',
-                    'Fecha de creación' => '2024-06-18',
-                    'Estado' => 'Activo',
-                    'Acciones' => 'Editar | Eliminar',
-                ],
-                [
-                    'Nombre del rol' => 'Usuario',
-                    'Fecha de creación' => '2024-06-18',
-                    'Estado' => 'Activo',
-                    'Acciones' => 'Editar | Eliminar',
-                ],
-                [
-                    'Nombre del rol' => 'Usuario',
-                    'Fecha de creación' => '2024-06-18',
-                    'Estado' => 'Activo',
-                    'Acciones' => 'Editar | Eliminar',
-                ],
-            ],
-        ])
+
+        @livewire('diagramas.table', ['case' => 'descargas'])
 
     </div>
 
