@@ -13,7 +13,7 @@
         chart: {
             type: 'bar',
             height: 350,
-            widt|h: '100%', // Ajusta el ancho del gráfico al 100% del contenedor
+            width: '100%', // Ajusta el ancho del gráfico al 100% del contenedor
             // Puedes ajustar otras opciones del gráfico según necesites
         },
         plotOptions: {

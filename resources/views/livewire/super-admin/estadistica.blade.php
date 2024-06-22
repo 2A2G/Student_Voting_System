@@ -109,6 +109,7 @@
                 </h1>
             </div>
         </div>
+        
         @livewire('diagramas.table', [
             'columns' => ['Nombre del rol', 'Fecha de creación', 'Estado', 'Acciones'],
             'data' => [

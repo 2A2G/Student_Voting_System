@@ -1,7 +1,6 @@
-<!-- component -->
 <div class="w-56 fixed h-full bg-gray-200 dark:bg-gray-800">
     <div class="rounded-r bg-gray-900 xl:hidden flex justify-between w-full p-6 items-center ">
-        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+
         <div class="flex justify-between  items-center space-x-3">
             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -10,6 +9,7 @@
             </svg>
             <p class="text-2xl leading-6 text-white">INEFRAPASA</p>
         </div>
+
         <div aria-label="toggler" class="flex justify-center items-center">
             <button aria-label="open" id="open" onclick="showNav(true)"
                 class="hidden focus:outline-none focus:ring-2">
@@ -33,10 +33,11 @@
                 </svg>
             </button>
         </div>
+
     </div>
+
     <div id="Main"
         class="xl:rounded-r transform  xl:translate-x-0  ease-in-out transition duration-500 flex justify-start items-start h-full  w-full sm:w-64 bg-gray-900 flex-col">
-        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
 
         <div class="hidden xl:flex justify-start p-6 items-center space-x-3">
             <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,6 +47,7 @@
             </svg>
             <p class="text-2xl leading-6 text-white">INEFRAPASA</p>
         </div>
+
         <div
             class="mt-6 flex flex-col justify-start items-center  pl-4 w-full border-gray-600 border-b space-y-3 pb-5 ">
             <button wire:click="cambiar('dashboard')"
@@ -74,6 +76,7 @@
             </button>
 
         </div>
+
         <div class="flex flex-col justify-start items-center   px-6 border-b border-gray-600 w-full  ">
             <button onclick="showMenu1(true)"
                 class="focus:outline-none focus:text-indigo-400 text-left  text-white flex justify-between items-center w-full py-5 space-x-14  ">
@@ -151,6 +154,7 @@
                 </button>
             </div>
         </div>
+
         <div class="flex flex-col justify-start items-center   px-6 border-b border-gray-600 w-full  ">
             <button onclick="showMenu2(true)"
                 class="focus:outline-none focus:text-indigo-400  text-white flex justify-between items-center w-full py-5 space-x-14  ">
@@ -263,6 +267,7 @@
                 </button>
             </div>
         </div>
+
         <div class="flex flex-col justify-between items-center h-full pb-6   px-6  w-full  space-y-32 ">
             <button onclick="showMenu3(true)"
                 class="focus:outline-none focus:text-indigo-400  text-white flex justify-between items-center w-full py-5 space-x-14  ">
@@ -397,13 +402,9 @@
                         </svg>
                     </button>
                 </form>
-
             </div>
-
-
-
-
         </div>
+
     </div>
 </div>
 
