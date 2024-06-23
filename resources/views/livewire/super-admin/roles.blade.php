@@ -1,6 +1,6 @@
 <div class="mt-12">
 
-    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-2">
+    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-2 px-4">
         <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
             <div
                 class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -16,7 +16,7 @@
                     Roles</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{$totalRoles}}</h4>
+                    {{ $totalRoles }}</h4>
             </div>
 
         </div>
@@ -35,7 +35,7 @@
                 </p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{$totalPermisos}}</h4>
+                    {{ $totalPermisos }}</h4>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
                     <span class="ml-2">Crear rol</span>
                 </a>
             </div>
-            @livewire('diagramas.table',['case' => 'roles'] )
+            @livewire('diagramas.table', ['case' => 'roles'])
         </div>
         <div class="w-1/2 p-4">
             <div class="flex justify-between items-center">
@@ -73,7 +73,7 @@
                     <span class="ml-2">Crear permiso</span>
                 </a>
             </div>
-            @livewire('diagramas.table',['case'  => 'permisos'])
+            @livewire('diagramas.table', ['case' => 'permisos'])
         </div>
 
     </div>

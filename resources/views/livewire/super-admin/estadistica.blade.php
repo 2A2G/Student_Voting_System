@@ -1,5 +1,5 @@
 <div class="mt-12">
-    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 justify-center">
+    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-4 justify-center px-4">
         <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
             <div
                 class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-blue-600 to-blue-400 text-white shadow-blue-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -93,26 +93,26 @@
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="px-4">
             @livewire('diagramas.barra', ['case' => 'cursoEstudiantes'])
         </div>
     </div>
     <hr>
     <br>
 
-    {{-- Descargables --}}
-    <div class="col-md-6">
+    <div class="w-full px-4">
         <div class="row text-center">
             <div class="col-md-12">
                 <h1 style="font-size: 1.6rem;">
-                    Descargables
+                    Descargar
                 </h1>
+                @livewire('diagramas.table', ['case' => 'descargas'])
             </div>
         </div>
-
-        @livewire('diagramas.table', ['case' => 'descargas'])
-
     </div>
+
+
+</div>
 
 
 

@@ -42,6 +42,10 @@ class Table extends Component
                 $this->columns = ['ID', 'Nombre Completo', 'Correo Electronico', 'Rol', 'Acción'];
                 break;
 
+            // case 'descargas':
+
+            //     break;
+
             default:
                 $defaultPaginated = Role::paginate(10, ['id', 'name']);
                 $this->data = $defaultPaginated->items();  // Solo los datos de la página actual
