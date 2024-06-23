@@ -43,7 +43,6 @@ class Roles extends Component
     }
 
 
-
     public function render()
     {
         $totalRoles = Role::count();

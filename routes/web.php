@@ -13,16 +13,20 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     function () {
         Route::prefix('inefrapasa')->group(function () {
             Route::get('/dashboard', function () {
-                return view('dashboard');
+                $caso = 'dashboard';
+                return view('livewire.dashboard', compact('caso'));
             })->name('dashboard');
 
             Route::prefix('/gestion')->group(function () {
                 Route::get('/rolesPermisos', function () {
-                    return view('livewire.super-admin.roles');
-                })->name('usuarios');
-                
+                    $caso = 'rolesPermisos';
+                    return view('livewire.dashboard', compact('caso'));
+                })->name('rolesPermisos');
+
+
                 Route::get('/usuarios', function () {
-                    return view('livewire.super-admin.usuarios');
+                    $caso = 'usuarios';
+                    return view('livewire.dashboard', compact('caso'));
                 })->name('usuarios');
             });
         });

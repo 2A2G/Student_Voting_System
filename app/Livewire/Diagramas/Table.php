@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Diagramas;
 
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -34,10 +35,12 @@ class Table extends Component
                 $this->columns = ['ID', 'Nombre del Permiso'];
                 break;
 
-            // case 'descargas':
-
-            //     $this->columns = ['ID', 'Nombre del archivo'];
-            //     break;
+            case 'usuarios':
+                $usuariosPaginate = User::paginate(10, ['id', 'name', 'email']);
+                $this->data = $usuariosPaginate->items();
+                $this->dataI = ['id', 'name', 'email'];
+                $this->columns = ['ID', 'Nombre Completo', 'Correo Electronico', 'Rol', 'Acción'];
+                break;
 
             default:
                 $defaultPaginated = Role::paginate(10, ['id', 'name']);
@@ -48,7 +51,7 @@ class Table extends Component
         }
 
         // Devolver la colección paginada completa para la vista
-        return $rolesPaginated ?? $permissionsPaginated ?? $defaultPaginated;
+        return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated;
     }
 
 

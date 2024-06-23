@@ -6,10 +6,10 @@ use Livewire\Component;
 
 class SidebarMenu extends Component
 {
-    public function cambiar($name)
-    {
-        $this->dispatch('cambiarComponent', $name);
-    }
+    // public function cambiar($name)
+    // {
+    //     $this->dispatch('cambiarComponent', $name);
+    // }
 
     public function render()
     {

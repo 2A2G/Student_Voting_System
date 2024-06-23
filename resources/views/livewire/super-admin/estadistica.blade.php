@@ -94,7 +94,7 @@
         </div>
 
         <div class="col-md-12">
-            @livewire('diagramas.barra')
+            @livewire('diagramas.barra', ['case' => 'cursoEstudiantes'])
         </div>
     </div>
     <hr>
