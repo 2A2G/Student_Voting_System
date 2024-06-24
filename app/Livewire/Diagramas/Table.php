@@ -3,6 +3,7 @@
 namespace App\Livewire\Diagramas;
 
 use App\Models\User;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -23,20 +24,20 @@ class Table extends Component
     {
         switch ($this->case) {
             case 'roles':
-                $rolesPaginated = Role::paginate(10, ['id', 'name']);
+                $rolesPaginated = Role::simplePaginate(10, ['id', 'name']);
                 $this->data = $rolesPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
                 $this->columns = ['ID', 'Nombre del Rol'];
                 break;
             case 'permisos':
-                $permissionsPaginated = Permission::paginate(10, ['id', 'name']);
+                $permissionsPaginated = Permission::simplePaginate(10, ['id', 'name']);
                 $this->data = $permissionsPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
                 $this->columns = ['ID', 'Nombre del Permiso'];
                 break;
 
             case 'usuarios':
-                $usuariosPaginate = User::paginate(10, ['id', 'name', 'email']);
+                $usuariosPaginate = User::simplePaginate(10, ['id', 'name', 'email']);
                 $this->data = $usuariosPaginate->items();
                 $this->dataI = ['id', 'name', 'email'];
                 $this->columns = ['ID', 'Nombre Completo', 'Correo Electronico', 'Rol', 'Acción'];
@@ -47,20 +48,27 @@ class Table extends Component
             //     break;
 
             default:
-                $defaultPaginated = Role::paginate(10, ['id', 'name']);
+                $defaultPaginated = Role::simplePaginate(10, ['id', 'name']);
                 $this->data = $defaultPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
                 $this->columns = ['ID', 'Nombre del Rol'];
                 break;
         }
 
-        // Devolver la colección paginada completa para la vista
+         // Devolver la colección paginada completa para la vista
         return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated;
     }
 
 
 
     public function mount($columns = [], $data = [])
+    {
+        $this->datos();
+    }
+
+
+    #[On('post-created')]
+    public function refresh()
     {
         $this->datos();
     }

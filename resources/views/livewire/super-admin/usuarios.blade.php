@@ -49,19 +49,19 @@
             <x-slot name="content">
                 <!-- Campo de nombre completo -->
                 <label class="block mb-2">Nombre Completo</label>
-                <input type="text" class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                <input type="text"  wire:model="name" class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
 
                 <!-- Campo de correo electrónico -->
                 <label class="block mb-2">Correo Electronico</label>
-                <input type="email" class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                <input type="email"  wire:model="email" class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
 
                 <!-- Campo de selección de rol del usuario -->
                 <label class="block mb-2">Rol del usuario</label>
-                <select name="rol" id="rol" wire:model="selectedRole"
+                <select  wire:model="role"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
                     <option value="" selected disabled>Seleccione un rol</option>
                     @foreach ($roles as $rol)
-                        <option value="{{ $rol['id'] }}">{{ $rol['name'] }}</option>
+                        <option value="{{ $rol['name'] }}">{{ $rol['name'] }}</option>
                     @endforeach
                 </select>
 

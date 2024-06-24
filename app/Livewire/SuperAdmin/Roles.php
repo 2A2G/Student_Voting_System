@@ -12,18 +12,13 @@ class Roles extends Component
     public $name;
     public $role;
 
+    protected $listeners = ['refreshComponent' => '$refresh'];
+
     public function cambiar($name)
     {
         $this->name = $name;
 
-        if ($name === 'permiso') {
-            $this->role = 'permiso';
-        }
-
-        if ($name === 'rol') {
-            $this->role = 'rol';
-        }
-
+       
         $this->open = true;
     }
 
@@ -34,14 +29,16 @@ class Roles extends Component
                 'name' => $this->role,
             ]);
         } elseif ($this->name === 'rol') {
-            Role::create([
+            $role = Role::create([
                 'name' => $this->role,
             ]);
-        }
 
+            // $this->dispatchBrowserEvent('refreshComponent');
+        }
+        $this->dispatch('post-created'); 
+        
         $this->open = false;
     }
-
 
     public function render()
     {

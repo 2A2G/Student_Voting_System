@@ -14,6 +14,7 @@ class Usuarios extends Component
     public $role;
     public $email;
 
+
     public function cambiar()
     {
         $this->open = true;
@@ -21,14 +22,23 @@ class Usuarios extends Component
 
     public function store()
     {
-        try {
-            User::create([
-                'name' => $this->name,
-                'email' => $this->email
-            ]);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        // try {
+
+        // $user = User::create([
+        //     'name' => $this->name,
+        //     'email' => $this->email
+        // ]);
+        $user = new User();
+        $user->name = $this->name;
+        $user->email = $this->email;
+        $user->password = bcrypt('password');
+        $user->save();
+
+        $user->syncRoles([$this->role]);
+
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        // }
 
         $this->open = false;
     }

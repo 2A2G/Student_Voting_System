@@ -45,7 +45,7 @@
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-semibold text-gray-800">Roles</h2>
                 <a data-modal-target="static-modal" data-modal-toggle="static-modal" href="#"
-                    wire:click="cambiar('Rol')"
+                    wire:click="cambiar('rol')"
                     class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
                         class="w-6 h-6 text-white">
@@ -62,7 +62,7 @@
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-semibold text-gray-800">Permisos</h2>
                 <a data-modal-target="static-modal" data-modal-toggle="static-modal" href="#"
-                    wire:click="cambiar('Permiso')"
+                    wire:click="cambiar('permiso')"
                     class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
                         class="w-6 h-6 text-white">
@@ -95,8 +95,38 @@
         </x-dialog-modal>
     </div>
 
-
-
-    {{-- @livewire('modal.modal') --}}
-
 </div>
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+       
+        console.log('roles');
+        let timerInterval;
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2",
+            },
+            buttonsStyling: false
+        });
+        Livewire.on('post-created', () => {
+            console.log('post-created');
+            swalWithBootstrapButtons.fire({
+                title: "Actualizacion Exitosa",
+                text: "Gracias por actualiazar los datos",
+                icon: "success",
+                timer: 3000,
+                timerProgressBar: true,
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log("I was closed by the timer");
+                }
+            });
+
+        })
+    </script>
+@endpush
