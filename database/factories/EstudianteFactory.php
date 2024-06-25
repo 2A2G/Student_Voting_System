@@ -21,6 +21,7 @@ class EstudianteFactory extends Factory
             'numeroIdentidad' => $this->faker->unique()->randomNumber(9),
             'nombreEstudiante' => $this->faker->firstName(),
             'apellidoEstudiante' => $this->faker->lastName(),
+            'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'curso_id' => $this->faker->randomElement(Curso::pluck('id')->toArray())
 
         ];
