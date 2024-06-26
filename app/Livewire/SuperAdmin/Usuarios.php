@@ -3,12 +3,17 @@
 namespace App\Livewire\SuperAdmin;
 
 use App\Models\User;
+use Livewire\Attributes\Validate;
 use Spatie\Permission\Models\Role;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 
 class Usuarios extends Component
 {
+
+    #[Validate('required')]
+    #[Validate("Unique:users,name, users,email")]
+
     public $open = false;
     public $name;
     public $role;
@@ -22,12 +27,8 @@ class Usuarios extends Component
 
     public function store()
     {
-        // try {
 
-        // $user = User::create([
-        //     'name' => $this->name,
-        //     'email' => $this->email
-        // ]);
+        $this->validate();
         $user = new User();
         $user->name = $this->name;
         $user->email = $this->email;
@@ -36,10 +37,7 @@ class Usuarios extends Component
 
         $user->syncRoles([$this->role]);
 
-        // } catch (\Throwable $th) {
-        //     //throw $th;
-        // }
-
+        $this->dispatch('post-created', name: "El usuario " . $this->name . ", creado satisfactoriamente");
         $this->open = false;
     }
     public function render()

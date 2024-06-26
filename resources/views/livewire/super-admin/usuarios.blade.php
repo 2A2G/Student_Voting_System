@@ -49,16 +49,23 @@
             <x-slot name="content">
                 <!-- Campo de nombre completo -->
                 <label class="block mb-2">Nombre Completo</label>
-                <input type="text"  wire:model="name" class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                <input type="text" wire:model.live="name"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                @error('name')
+                    {{ $message }}
+                @enderror
 
                 <!-- Campo de correo electrónico -->
                 <label class="block mb-2">Correo Electronico</label>
-                <input type="email"  wire:model="email" class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                <input type="email" wire:model.live="email"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                @error('email')
+                    {{ $message }}
+                @enderror
 
                 <!-- Campo de selección de rol del usuario -->
                 <label class="block mb-2">Rol del usuario</label>
-                <select  wire:model="role"
-                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
+                <select wire:model="role" class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
                     <option value="" selected disabled>Seleccione un rol</option>
                     @foreach ($roles as $rol)
                         <option value="{{ $rol['name'] }}">{{ $rol['name'] }}</option>
@@ -78,3 +85,37 @@
 
 
 </div>
+
+@push('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        console.log('roles');
+        let timerInterval;
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2",
+            },
+            buttonsStyling: false
+        });
+        Livewire.on('post-created', (name) => {
+            console.log('post-created', name.name);
+            swalWithBootstrapButtons.fire({
+                title: "Actualizacion Exitosa",
+                text: name.name,
+                icon: "success",
+                timer: 3000,
+                timerProgressBar: true,
+                willClose: () => {
+                    clearInterval(timerInterval);
+                }
+            }).then((result) => {
+                /* Read more about handling dismissals below */
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    console.log("I was closed by the timer");
+                }
+            });
+
+        })
+    </script>
+@endpush
