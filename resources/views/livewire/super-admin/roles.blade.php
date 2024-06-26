@@ -84,9 +84,12 @@
             </x-slot>
             <x-slot name="content">
                 <label class="block mb-2">Nombre del nuevo {{ $name }}</label>
-                <input type="text" wire:model="role" class="border border-gray-300 rounded px-3 py-2 w-full mb-3"
-                    required>
-
+                <input type="text" wire:model.live="role"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                @error('role')
+                    {{ $message }}
+                @enderror
+                <br>
                 <button wire:click="crear" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                     Crear
                 </button>
@@ -100,7 +103,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-       
         console.log('roles');
         let timerInterval;
         const swalWithBootstrapButtons = Swal.mixin({
@@ -109,11 +111,11 @@
             },
             buttonsStyling: false
         });
-        Livewire.on('post-created', () => {
-            console.log('post-created');
+        Livewire.on('post-created', (name) => {
+            console.log('post-created', name.name);
             swalWithBootstrapButtons.fire({
                 title: "Actualizacion Exitosa",
-                text: "Gracias por actualiazar los datos",
+                text: name.name,
                 icon: "success",
                 timer: 3000,
                 timerProgressBar: true,

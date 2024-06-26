@@ -2,6 +2,7 @@
 
 namespace App\Livewire\SuperAdmin;
 
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -10,33 +11,36 @@ class Roles extends Component
 {
     public $open = false;
     public $name;
+
+    #[Validate('required')]
+    #[Validate("Unique:roles,name")]
     public $role;
 
-    protected $listeners = ['refreshComponent' => '$refresh'];
+    // protected $listeners = ['refreshComponent' => '$refresh'];
 
     public function cambiar($name)
     {
         $this->name = $name;
 
-       
+
         $this->open = true;
     }
 
     public function crear()
     {
+        $this->validate();
         if ($this->name === 'permiso') {
             Permission::create([
                 'name' => $this->role,
             ]);
         } elseif ($this->name === 'rol') {
-            $role = Role::create([
+            Role::create([
                 'name' => $this->role,
             ]);
-
-            // $this->dispatchBrowserEvent('refreshComponent');
         }
-        $this->dispatch('post-created'); 
-        
+        $this->role = '';
+        $this->dispatch('post-created', name: "Se ha creado satisfactoriamente " . $this->name);
+
         $this->open = false;
     }
 

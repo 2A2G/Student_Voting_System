@@ -27,13 +27,13 @@ class Table extends Component
                 $rolesPaginated = Role::simplePaginate(10, ['id', 'name']);
                 $this->data = $rolesPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
-                $this->columns = ['ID', 'Nombre del Rol'];
+                $this->columns = ['ID', 'Nombre del Rol', 'Acción'];
                 break;
             case 'permisos':
                 $permissionsPaginated = Permission::simplePaginate(10, ['id', 'name']);
                 $this->data = $permissionsPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
-                $this->columns = ['ID', 'Nombre del Permiso'];
+                $this->columns = ['ID', 'Nombre del Permiso', 'Acción'];
                 break;
 
             case 'usuarios':
@@ -43,19 +43,19 @@ class Table extends Component
                 $this->columns = ['ID', 'Nombre Completo', 'Correo Electronico', 'Rol', 'Acción'];
                 break;
 
-            // case 'descargas':
+                // case 'descargas':
 
-            //     break;
+                //     break;
 
             default:
                 $defaultPaginated = Role::simplePaginate(10, ['id', 'name']);
                 $this->data = $defaultPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
-                $this->columns = ['ID', 'Nombre del Rol'];
+                $this->columns = ['ID', 'Nombre del Rol', 'Acción'];
                 break;
         }
 
-         // Devolver la colección paginada completa para la vista
+        // Devolver la colección paginada completa para la vista
         return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated;
     }
 
