@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ComponentController;
+
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,22 +13,12 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(
     function () {
         Route::prefix('inefrapasa')->group(function () {
-            Route::get('/dashboard', function () {
-                $caso = 'dashboard';
-                return view('livewire.dashboard', compact('caso'));
-            })->name('dashboard');
+            Route::get('/dashboard', [ViewController::class, 'index'])->name('dashboard');
 
             Route::prefix('/gestion')->group(function () {
-                Route::get('/rolesPermisos', function () {
-                    $caso = 'rolesPermisos';
-                    return view('livewire.dashboard', compact('caso'));
-                })->name('rolesPermisos');
-
-
-                Route::get('/usuarios', function () {
-                    $caso = 'usuarios';
-                    return view('livewire.dashboard', compact('caso'));
-                })->name('usuarios');
+                Route::get('/rolesPermisos', [ViewController::class, 'rolesPermisos'])->name('rolesPermisos');
+                Route::get('/usuarios', [ViewController::class, 'usuarios'])->name('usuarios');
+                Route::get('/estudiante', [ViewController::class, 'estudiante'])->name('viewEstudiantes');
             });
         });
     }

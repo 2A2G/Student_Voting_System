@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Diagramas;
 
+use App\Models\Estudiante;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -43,9 +44,16 @@ class Table extends Component
                 $this->columns = ['ID', 'Nombre Completo', 'Correo Electronico', 'Rol', 'Acción'];
                 break;
 
-                // case 'descargas':
+            case 'estudiantes':
+                $estudiantesPaginate = Estudiante::simplePaginate(10, ['id', 'numeroIdentidad', 'nombreEstudiante', 'sexo', 'curso_id']);
+                $this->data = $estudiantesPaginate->items();
+                $this->dataI = ['id', 'numeroIdentidad', 'nombreEstudiante', 'sexo', 'curso_id'];
+                $this->columns = ['ID', 'Número de Identidad', 'Nombre del Estudiante', 'Sexo', 'Curso', 'Acción'];
+                break;
 
-                //     break;
+            // case 'descargas':
+
+            //     break;
 
             default:
                 $defaultPaginated = Role::simplePaginate(10, ['id', 'name']);
@@ -56,7 +64,7 @@ class Table extends Component
         }
 
         // Devolver la colección paginada completa para la vista
-        return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated;
+        return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated ?? $estudiantesPaginate;
     }
 
 

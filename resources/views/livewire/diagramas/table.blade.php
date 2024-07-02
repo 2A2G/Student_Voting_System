@@ -32,6 +32,7 @@
         <!-- Pagination Links -->
         <div class="mt-4">
             {{ $pagination->links() }} <!-- Muestra los enlaces de paginación -->
+            <br>
         </div>
     </div>
 </div>

@@ -23,6 +23,11 @@ class Curso extends Model
     public function postulante()
     {
         return $this->hasMany(Postulante::class);
-    }    
+    }
+
+    public function docentes()
+    {
+        return $this->hasMany(Docente::class);
+    }
 
 }

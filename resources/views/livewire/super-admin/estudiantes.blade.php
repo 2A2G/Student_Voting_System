@@ -1,6 +1,6 @@
 <div class="mt-12">
 
-    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-2 px-4">
+    <div class="mb-12 grid gap-y-10 gap-x-6 md:grid-cols-2 xl:grid-cols-1 px-4">
         <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
             <div
                 class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
@@ -13,39 +13,20 @@
             </div>
             <div class="p-4 text-right">
                 <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                    Roles</p>
+                    Total de Estudiantes</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalRoles }}</h4>
-            </div>
-
-        </div>
-        <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
-            <div
-                class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-orange-600 to-orange-400 text-white shadow-orange-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                    class="w-6 h-6 text-white">
-                    <path
-                        d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z">
-                    </path>
-                </svg>
-            </div>
-            <div class="p-4 text-right">
-                <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">Permisos
-                </p>
-                <h4
-                    class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalPermisos }}</h4>
+                    {{ $totalEstudiantes->count() }}
+                </h4>
             </div>
         </div>
     </div>
 
-    <div class="flex flex-wrap">
-        <div class="w-full sm:w-1/2 p-4">
+    <div class="flex">
+        <div class="w-full px-4">
             <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-semibold text-gray-800">Roles</h2>
-                <a data-modal-target="static-modal" data-modal-toggle="static-modal" href="#"
-                    wire:click="cambiar('rol')"
+                <h2 class="text-2xl font-semibold text-gray-800">Estudiantes</h2>
+                <a data-modal-target="static-modal" data-modal-toggle="static-modal" href="#" wire:click="cambiar"
                     class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
                         class="w-6 h-6 text-white">
@@ -53,52 +34,70 @@
                             d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 1a9 9 0 100 18 9 9 0 000-18zm0 4a1 1 0 011 1v3h3a1 1 0 010 2h-3v3a1 1 0 01-2 0v-3H8a1 1 0 010-2h3V8a1 1 0 011-1z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    <span class="ml-2">Crear rol</span>
+                    <span class="ml-2">Registrar Estudiante</span>
                 </a>
             </div>
-            @livewire('diagramas.table', ['case' => 'roles'])
+            @livewire('diagramas.table', ['case' => 'estudiantes'])
         </div>
-        <div class="w-full sm:w-1/2 p-4">
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-semibold text-gray-800">Permisos</h2>
-                <a data-modal-target="static-modal" data-modal-toggle="static-modal" href="#"
-                    wire:click="cambiar('permiso')"
-                    class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                        class="w-6 h-6 text-white">
-                        <path fill-rule="evenodd"
-                            d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 1a9 9 0 100 18 9 9 0 000-18zm0 4a1 1 0 011 1v3h3a1 1 0 010 2h-3v3a1 1 0 01-2 0v-3H8a1 1 0 010-2h3V8a1 1 0 011-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="ml-2">Crear permiso</span>
-                </a>
-            </div>
-            @livewire('diagramas.table', ['case' => 'permisos'])
-        </div>
-    </div>
 
+    </div>
     <div>
         <x-dialog-modal wire:model="open">
             <x-slot name="title">
-                <h1 class="text-lg font-medium">Crear nuevo {{ $name }}</h1>
+                <h1 class="text-lg font-medium">Registrar Estudiante</h1>
             </x-slot>
             <x-slot name="content">
-                <label class="block mb-2">Nombre del nuevo {{ $name }}</label>
-                <input type="text" wire:model.live="role"
+                <!-- Campo de nombre completo -->
+                <label class="block mb-2">Número de identidad</label>
+                <input type="text" wire:model.live="numeroIdentidad"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
-                @error('role')
+                @error('numeroIdentidad')
                     {{ $message }}
                 @enderror
+                <label class="block mb-2">Nombre</label>
+                <input type="text" wire:model.live="nombreEstudiante"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                @error('nombreEstudiante')
+                    {{ $message }}
+                @enderror
+                <label class="block mb-2">Apellido</label>
+                <input type="text" wire:model.live="apellidoEstudiante"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                @error('apellidoEstudiante')
+                    {{ $message }}
+                @enderror
+
+
+                <!-- Campo de selección de curso del estudiante -->
+                <label class="block mb-2">Selecione el Sexo</label>
+                <select wire:model="sexo" class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
+                    <option value="" selected disabled>Seleccione un sexo</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+
+                <label class="block mb-2">Selecione el curso</label>
+                <select wire:model="curso_id" class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
+                    <option value="" selected disabled>Seleccione un curso</option>
+                    @foreach ($cursos as $curso)
+                        <option value="{{ $curso['id'] }}">{{ $curso['nombreCurso'] }}</option>
+                    @endforeach
+                </select>
+
+                <!-- Botón para guardar usuario -->
                 <br>
-                <button wire:click="crear" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                    Crear
+                <button wire:click="store" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                    Guardar Estudiante
                 </button>
             </x-slot>
-            <x-slot name="footer"></x-slot>
+
         </x-dialog-modal>
+
     </div>
 
+
 </div>
+
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

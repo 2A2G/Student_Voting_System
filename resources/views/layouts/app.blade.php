@@ -24,10 +24,12 @@
     <x-banner />
 
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <div class="flex">
-            @livewire('sidebar-menu')
+        <div class="flex flex-col lg:flex-row">
+            <div class="w-full lg:w-60">
+                @livewire('sidebar-menu')
+            </div>
 
-            <main class="flex-1 ml-60 min-h-screen">
+            <main class="flex-1 min-h-screen">
                 {{ $slot }}
             </main>
         </div>
@@ -37,7 +39,7 @@
 
     @livewireScripts
     @stack('js')
-
 </body>
+
 
 </html>
