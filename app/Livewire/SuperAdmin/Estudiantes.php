@@ -18,8 +18,8 @@ class Estudiantes extends Component
     public $numeroIdentidad;
     public $nombreEstudiante;
     public $apellidoEstudiante;
-    public $sexo;
-    public $curso_id;
+    public $sexo = '';
+    public $curso_id = '';
 
     public function clearInput()
     {

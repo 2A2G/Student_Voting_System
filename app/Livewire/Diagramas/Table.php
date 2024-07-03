@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Diagramas;
 
+use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\User;
 use Livewire\Attributes\On;
@@ -34,7 +35,7 @@ class Table extends Component
                 $permissionsPaginated = Permission::simplePaginate(10, ['id', 'name']);
                 $this->data = $permissionsPaginated->items();  // Solo los datos de la página actual
                 $this->dataI = ['id', 'name'];
-                $this->columns = ['ID', 'Nombre del Permiso', 'Acción'];
+                $this->columns = ['ID', 'Nombre del Permiso'];
                 break;
 
             case 'usuarios':
@@ -51,9 +52,14 @@ class Table extends Component
                 $this->columns = ['ID', 'Número de Identidad', 'Nombre del Estudiante', 'Sexo', 'Curso', 'Acción'];
                 break;
 
-            // case 'descargas':
+            case 'docentes':
+                $docentesPaginate = Docente::simplePaginate(10, ['id', 'numeroIdentidad', 'asignatura', 'sexo', 'curso_id']);
+                $this->data = $docentesPaginate->items();
+                $this->dataI = ['id', 'numeroIdentidad', 'asignatura', 'sexo', 'curso_id'];
+                $this->columns = ['ID', 'Número de Identidad', 'Nombre de la asignatura', 'Sexo', 'Director del Curso', 'Acción'];
+                break;
 
-            //     break;
+            // case 'descargas':        
 
             default:
                 $defaultPaginated = Role::simplePaginate(10, ['id', 'name']);
@@ -64,7 +70,7 @@ class Table extends Component
         }
 
         // Devolver la colección paginada completa para la vista
-        return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated ?? $estudiantesPaginate;
+        return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated ?? $estudiantesPaginate ?? $docentesPaginate ?? null;
     }
 
 
@@ -79,6 +85,11 @@ class Table extends Component
     public function refresh()
     {
         $this->datos();
+    }
+
+    public function filtrar($case)
+    {
+        //
     }
 
     public function render()

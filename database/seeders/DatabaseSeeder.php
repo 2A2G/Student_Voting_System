@@ -14,15 +14,20 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // User::factory()->create([
-        //     'name' => 'Aldair',
-        //     'email' => 'admin@INEFRAPASA.com',
-        // ]);
 
-        User::factory(1)->create();
         $this->call(RoleSeeder::class);
         $this->call(CursoSeeder::class);
         $this->call(CargoSeeder::class);
         $this->call(EstudianteSeeder::class);
+
+        $user = User::create([
+            'name' => 'Aldair',
+            'email' => 'admin@inefrapasa.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('super-admin');
+
+
+
     }
 }

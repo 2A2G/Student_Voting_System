@@ -16,7 +16,7 @@ class Usuarios extends Component
 
     public $open = false;
     public $name;
-    public $role;
+    public $role = '';
     public $email;
 
 
@@ -44,7 +44,7 @@ class Usuarios extends Component
     {
         $user = User::all();
         $rol = Role::all('id', 'name');
-        $permisos = Permission::get('id', 'name');
+        $permisos = Permission::get();
         return view(
             'livewire.super-admin.usuarios',
             [

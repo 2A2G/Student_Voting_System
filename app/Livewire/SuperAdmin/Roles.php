@@ -29,15 +29,11 @@ class Roles extends Component
     public function crear()
     {
         $this->validate();
-        if ($this->name === 'permiso') {
-            Permission::create([
-                'name' => $this->role,
-            ]);
-        } elseif ($this->name === 'rol') {
-            Role::create([
-                'name' => $this->role,
-            ]);
-        }
+
+        Role::create([
+            'name' => $this->role,
+        ]);
+
         $this->role = '';
         $this->dispatch('post-created', name: "Se ha creado satisfactoriamente " . $this->name);
 

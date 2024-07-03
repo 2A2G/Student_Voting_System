@@ -60,6 +60,7 @@
 
                     </div>
 
+                    {{-- Menu 1 --}}
                     <div class="flex flex-col justify-start items-center   px-6 border-b border-gray-600 w-full  ">
                         <button onclick="showMenu1(true)"
                             class="focus:outline-none focus:text-indigo-400 text-left  text-white flex justify-between items-center w-full py-5 space-x-14  ">
@@ -101,7 +102,8 @@
                                 </svg>
                                 <p class="text-base leading-4  ">Estudiantes</p>
                             </a>
-                            <button
+                            {{-- @can('viewDocentes') --}}
+                            <a href="{{ route('viewDocentes') }}"
                                 class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24">
@@ -110,7 +112,63 @@
                                         clip-rule="evenodd" />
                                 </svg>
                                 <p class="text-base leading-4 ">Docentes</p>
-                            </button>
+                            </a>
+                            {{-- @endcan --}}
+                        </div>
+                    </div>
+
+                    {{-- Menu 2 --}}
+                    <div class="flex flex-col justify-start items-center   px-6 border-b border-gray-600 w-full  ">
+                        <button onclick="showMenu2(true)"
+                            class="focus:outline-none focus:text-indigo-400 text-left  text-white flex justify-between items-center w-full py-5 space-x-14  ">
+                            <p class="text-sm leading-5  uppercase">Sistema de votación</p>
+                            <svg id="icon1" class="transform" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+
+                        <div id="menu2" class="flex justify-start  flex-col w-full md:w-auto items-start pb-1 ">
+                            @can('view panel votacion')
+                                <a href="{{ route('viewPanelVotacion') }}"
+                                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24">
+                                        <path fill="none" stroke="#dc2626" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"
+                                            d="M12 15v5m-3 0h6M4 11h16M5 15h14a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1" />
+                                    </svg>
+                                    <p class="text-base leading-4  ">Panel de votación</p>
+                                </a>
+                            @endcan
+                            @can('view historial votacion')
+                                <a href="{{ route('viewHistorialVotacion') }}"
+                                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24">
+                                        <g fill="#dc2626" fill-rule="evenodd" clip-rule="evenodd">
+                                            <path
+                                                d="M6 5a2 2 0 0 1 2-2h4.157a2 2 0 0 1 1.656.879L15.249 6H19a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2v-5a3 3 0 0 0-3-3h-3.22l-1.14-1.682A3 3 0 0 0 9.157 6H6z" />
+                                            <path
+                                                d="M3 9a2 2 0 0 1 2-2h4.157a2 2 0 0 1 1.656.879L12.249 10H3zm0 3v7a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-7z" />
+                                        </g>
+                                    </svg>
+                                    <p class="text-base leading-4  ">Historial</p>
+                                </a>
+                            @endcan
+                            @can('view postulacion')
+                                <a href="{{ route('viewPostulacion') }}"
+                                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24">
+                                        <path fill="#dc2626" fill-rule="evenodd"
+                                            d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12m11-4.243a1 1 0 1 0-2 0V11H7.757a1 1 0 1 0 0 2H11v3.243a1 1 0 1 0 2 0V13h3.243a1 1 0 1 0 0-2H13z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <p class="text-base leading-4">Postulación</p>
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </li>
@@ -150,26 +208,20 @@
 <script>
     let icon1 = document.getElementById("icon1");
     let menu1 = document.getElementById("menu1");
+    let menu2 = document.getElementById("menu2");
     const showMenu1 = (flag) => {
         if (flag) {
             icon1.classList.toggle("rotate-180");
             menu1.classList.toggle("hidden");
         }
     };
-    let icon2 = document.getElementById("icon2");
-
     const showMenu2 = (flag) => {
         if (flag) {
-            icon2.classList.toggle("rotate-180");
+            icon1.classList.toggle("rotate-180");
+            menu2.classList.toggle("hidden");
         }
     };
-    let icon3 = document.getElementById("icon3");
 
-    const showMenu3 = (flag) => {
-        if (flag) {
-            icon3.classList.toggle("rotate-180");
-        }
-    };
 
     let Main = document.getElementById("Main");
     let open = document.getElementById("open");

@@ -12,10 +12,13 @@ return new class extends Migration {
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('curso_id')->constrained('cursos');
             $table->string('numeroIdentidad')->unique();
+            $table->foreignId('user_id');
+            $table->foreignId('curso_id')->nullable();
             $table->string('asignatura');
+            $table->string('sexo');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
             $table->timestamps();
         });
     }

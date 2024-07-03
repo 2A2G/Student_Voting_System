@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -47,10 +49,13 @@ class RoleSeeder extends Seeder
             'edit cargo' => ['super-admin', 'admin'],
             'delete cargo' => ['super-admin'],
 
-            'ver votos' => ['super-admin', 'admin', 'secretaria', 'docente'],
+            'view panel votacion' => ['super-admin', 'admin', 'secretaria', 'docente'],
+            'view postulacion' => ['super-admin', 'admin', 'secretaria'],
             'inicar votacion' => ['super-admin', 'admin'],
             'cerrar votacion' => ['super-admin', 'admin'],
+
             'ver resultados' => ['super-admin', 'admin', 'secretaria', 'docente'],
+            'view historial votacion' => ['super-admin', 'admin', 'secretaria', 'docente'],
         ];
 
         foreach ($permissions as $permissionName => $roleNames) {

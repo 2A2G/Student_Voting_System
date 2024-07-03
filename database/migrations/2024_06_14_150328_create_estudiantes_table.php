@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->string('nombreEstudiante');
             $table->string('apellidoEstudiante');
             $table->string('sexo');
-            $table->foreignId('curso_id')->constrained('cursos');
+            $table->foreignId('curso_id');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
