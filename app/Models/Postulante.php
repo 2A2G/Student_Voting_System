@@ -23,11 +23,6 @@ class Postulante extends Model
         return $this->belongsTo(Cargo::class);
     }
 
-    public function curso()
-    {
-        return $this->belongsTo(Curso::class);
-    }
-
     public function estudiante()
     {
         return $this->belongsTo(Estudiante::class);

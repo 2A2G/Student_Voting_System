@@ -48,6 +48,12 @@ class ViewController extends Controller
 
     // Sistema de Votacion
 
+    public function cargos()
+    {
+        $caso = 'cargos';
+        return view('livewire.dashboard', compact('caso'));
+    }
+
     public function panelVotacion()
     {
         $caso = 'panelVotacion';

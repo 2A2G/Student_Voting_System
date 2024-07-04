@@ -12,9 +12,12 @@ return new class extends Migration {
     {
         Schema::create('postulantes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('estudiante_id')->constrained('estudiantes');
-            $table->foreignId('cargo_id')->constrained('cargos');
+            $table->foreignId('estudiante_id');
+            $table->foreignId('cargo_id');
             $table->integer('cantidadVotos')->default(0);
+
+            $table->foreign('estudiante_id')->references('id')->on('estudiantes')->onDelete('cascade');
+            $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

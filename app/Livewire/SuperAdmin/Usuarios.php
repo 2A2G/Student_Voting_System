@@ -28,7 +28,14 @@ class Usuarios extends Component
     public function store()
     {
 
-        $this->validate();
+        $this->validate(
+            [
+                'name' => 'required',
+                'email' => 'required|email',
+                'role' => 'required'
+            ]
+        );
+
         $user = new User();
         $user->name = $this->name;
         $user->email = $this->email;
@@ -42,7 +49,7 @@ class Usuarios extends Component
     }
     public function render()
     {
-        $user = User::all();
+        $user = User::count();
         $rol = Role::all('id', 'name');
         $permisos = Permission::get();
         return view(

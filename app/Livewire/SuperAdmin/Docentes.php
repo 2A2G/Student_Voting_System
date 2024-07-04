@@ -35,7 +35,15 @@ class Docentes extends Component
 
     public function store()
     {
-        $this->validate();
+        $this->validate(
+            [
+                'nameDocente' => 'required',
+                'email' => 'required|email',
+                'numeroIdentidad' => 'required',
+                'sexo' => 'required',
+                'asignatura' => 'required'
+            ]
+        );
 
         $userDocente = new User();
         $docente = new Docente();

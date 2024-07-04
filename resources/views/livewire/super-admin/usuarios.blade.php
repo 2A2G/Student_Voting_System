@@ -16,7 +16,7 @@
                     Total de usuarios en el sistema</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $user->count() }}
+                    {{ $user }}
                 </h4>
             </div>
         </div>

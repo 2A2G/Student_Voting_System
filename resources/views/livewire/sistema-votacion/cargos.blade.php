@@ -4,19 +4,17 @@
         <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
             <div
                 class="bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr from-pink-600 to-pink-400 text-white shadow-pink-500/40 shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                    class="w-6 h-6 text-white">
-                    <path fill-rule="evenodd"
-                        d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z"
-                        clip-rule="evenodd"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m7.171 12.906l-2.153 6.411l2.672-.89l1.568 2.34l1.825-5.183m5.73-2.678l2.154 6.411l-2.673-.89l-1.568 2.34l-1.825-5.183M9.165 4.3c.58.068 1.153-.17 1.515-.628a1.68 1.68 0 0 1 2.64 0a1.68 1.68 0 0 0 1.515.628a1.68 1.68 0 0 1 1.866 1.866c-.068.58.17 1.154.628 1.516a1.68 1.68 0 0 1 0 2.639a1.68 1.68 0 0 0-.628 1.515a1.68 1.68 0 0 1-1.866 1.866a1.68 1.68 0 0 0-1.516.628a1.68 1.68 0 0 1-2.639 0a1.68 1.68 0 0 0-1.515-.628a1.68 1.68 0 0 1-1.867-1.866a1.68 1.68 0 0 0-.627-1.515a1.68 1.68 0 0 1 0-2.64c.458-.361.696-.935.627-1.515A1.68 1.68 0 0 1 9.165 4.3M14 9a2 2 0 1 1-4 0a2 2 0 0 1 4 0" />
                 </svg>
             </div>
             <div class="p-4 text-right">
                 <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
-                    Total de postulantes</p>
+                    Total de Cargos</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalPostulantes }}
+                    {{ $cargos }}
                 </h4>
             </div>
         </div>
@@ -25,7 +23,7 @@
     <div class="flex">
         <div class="w-full px-4">
             <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-semibold text-gray-800">Postulantes</h2>
+                <h2 class="text-2xl font-semibold text-gray-800">Cargos</h2>
                 <a data-modal-target="static-modal" data-modal-toggle="static-modal" href="#" wire:click="cambiar"
                     class="flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
@@ -34,71 +32,55 @@
                             d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 1a9 9 0 100 18 9 9 0 000-18zm0 4a1 1 0 011 1v3h3a1 1 0 010 2h-3v3a1 1 0 01-2 0v-3H8a1 1 0 010-2h3V8a1 1 0 011-1z"
                             clip-rule="evenodd"></path>
                     </svg>
-                    <span class="ml-2">Nuevo postulante</span>
+                    <span class="ml-2">Registrar nuevo Cargo</span>
                 </a>
             </div>
-            @livewire('diagramas.table', ['case' => 'postulantes'])
+            @livewire('diagramas.table', ['case' => 'cargos'])
         </div>
-    </div>
 
+    </div>
     <div>
         <x-dialog-modal wire:model="open">
             <x-slot name="title">
-                <h1 class="text-lg font-medium">Añadir Postulante</h1>
+                <h1 class="text-lg font-medium">Registrar Estudiante</h1>
             </x-slot>
             <x-slot name="content">
-                <!-- Campo de numero de identidad -->
-                <label class="block mb-2">Número de identidad</label>
-                <input type="number" wire:model="numeroIdentidad" wire:change="buscarEstudiante"
-                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required min="0" step="1"
-                    oninput="this.value = this.value.slice(0, 10);">
-
-                @error('numeroIdentidad')
-                    <span class="text-red-500">{{ $message }}</span>
+                <!--Nombre del cargo-->
+                <label class="block mb-2">Nombre del cargo</label>
+                <input type="text" wire:model.live="nombreCargo"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                @error('nombreCargo')
+                    {{ $message }}
                 @enderror
-                @if ($mensajeError)
-                    <span class="text-red-500">{{ $mensajeError }}</span>
-                @endif
 
-
-                <!--Campo del nombre que se colocará solo al momento de ingresar el número de identidad-->
-                <label class="block mb-2">Nombre del postulante</label>
-                <input type="text" value="{{ $nombrePostulante }}"
-                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" disabled>
-
-                <!-- Campo para el curso del postulante -->
-                <label class="block mb-2">Curso</label>
-                <input type="text" value="{{ $cursoPostulante }}"
-                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" disabled>
-
-                <!-- Campo para el cargo del postulante -->
-                <label class="block mb-2">Cargo</label>
-                <input type="text" value="{{ $cargo }}"
-                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" disabled>
-
-
-                {{-- Campo para subir la imagen del postulante --}}
-                <label class="block mb-2">Imagen del postulante</label>
-                <input type="file" wire:model="image" class="border border-gray-300 rounded px-3 py-2 w-full mb-3"
-                    required>
-                @error('image')
-                    <span class="text-red-500">{{ $message }}</span>
+                <!--Descripcion del cargo-->
+                <label class="block mb-2">Descripción del cargo</label>
+                <input type="text" wire:model.live="descripcionCargo"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                @error('descripcionCargo')
+                    {{ $message }}
                 @enderror
+
 
                 <!-- Botón para guardar usuario -->
                 <br>
                 <button wire:click="store" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                    Guardar postulante
+                    Guardar Estudiante
                 </button>
             </x-slot>
+
         </x-dialog-modal>
+
     </div>
+
+
 </div>
 
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        console.log('roles');
         let timerInterval;
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -118,10 +100,12 @@
                     clearInterval(timerInterval);
                 }
             }).then((result) => {
+                /* Read more about handling dismissals below */
                 if (result.dismiss === Swal.DismissReason.timer) {
                     console.log("I was closed by the timer");
                 }
             });
+
         })
     </script>
 @endpush

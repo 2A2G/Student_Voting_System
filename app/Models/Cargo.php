@@ -12,7 +12,7 @@ class Cargo extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'nombreCargo',
+        'nombreCargo',        
         'descripcionCargo',
     ];
 

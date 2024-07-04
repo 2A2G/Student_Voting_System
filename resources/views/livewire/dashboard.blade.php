@@ -24,7 +24,11 @@
                         @livewire('super-admin.docentes')
                     @break
 
-                    {{-- Sistema de Votación --}}
+                    <!--Sistema de Votación-->
+                    @case('cargos')
+                        @livewire('sistema-votacion.cargos')
+                    @break
+
                     @case('panelVotacion')
                         @livewire('sistema-votacion.panel')
                     @break

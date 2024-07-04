@@ -33,7 +33,16 @@ class Estudiantes extends Component
 
     public function store()
     {
-        $this->validate();
+        $this->validate(
+            [
+                'numeroIdentidad' => 'required',
+                'nombreEstudiante' => 'required',
+                'apellidoEstudiante' => 'required',
+                'sexo' => 'required',
+                'curso_id' => 'required'
+            ]
+        );
+
         $estudiante = new Estudiante();
         $estudiante->numeroIdentidad = $this->numeroIdentidad;
         $estudiante->nombreEstudiante = $this->nombreEstudiante;
@@ -53,7 +62,7 @@ class Estudiantes extends Component
     public function render()
     {
 
-        $totalEstudiantes = Estudiante::all();
+        $totalEstudiantes = Estudiante::count();
         $cursos = Curso::all();
         return view('livewire.super-admin.estudiantes', [
             'totalEstudiantes' => $totalEstudiantes,

@@ -28,7 +28,11 @@ class Roles extends Component
 
     public function crear()
     {
-        $this->validate();
+        $this->validate(
+            [
+                'role' => 'required',
+            ]
+        );
 
         Role::create([
             'name' => $this->role,

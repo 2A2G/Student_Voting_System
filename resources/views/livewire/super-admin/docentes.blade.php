@@ -48,9 +48,9 @@
             </x-slot>
             <x-slot name="content">
                 <!-- Campo de nombre completo -->
-                <label class="block mb-2">Número de identidad</label>
-                <input type="text" wire:model.live="numeroIdentidad"
-                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                <input type="number" wire:model.live="numeroIdentidad"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required min="0" step="1"
+                    oninput="this.value = this.value.slice(0, 10);">
                 @error('numeroIdentidad')
                     {{ $message }}
                 @enderror
@@ -96,7 +96,7 @@
                 <!-- Campo de selección de curso -->
                 <label class="block mb-2">Seleccione el curso</label>
                 <select wire:model="curso_id" class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
-                    <option value="" >Seleccione un curso</option>
+                    <option value="">Seleccione un curso</option>
                     @foreach ($cursos as $curso)
                         <option value="{{ $curso['id'] }}">{{ $curso['nombreCurso'] }}</option>
                     @endforeach

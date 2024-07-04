@@ -2,8 +2,10 @@
 
 namespace App\Livewire\Diagramas;
 
+use App\Models\Cargo;
 use App\Models\Docente;
 use App\Models\Estudiante;
+use App\Models\Postulante;
 use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -31,6 +33,7 @@ class Table extends Component
                 $this->dataI = ['id', 'name'];
                 $this->columns = ['ID', 'Nombre del Rol', 'Acción'];
                 break;
+
             case 'permisos':
                 $permissionsPaginated = Permission::simplePaginate(10, ['id', 'name']);
                 $this->data = $permissionsPaginated->items();  // Solo los datos de la página actual
@@ -59,18 +62,32 @@ class Table extends Component
                 $this->columns = ['ID', 'Número de Identidad', 'Nombre de la asignatura', 'Sexo', 'Director del Curso', 'Acción'];
                 break;
 
-            // case 'descargas':        
+            case 'postulantes':
+                $postulantesPaginate = Postulante::simplePaginate(10, ['id', 'estudiante_id', 'cargo_id']);
+                $this->data = $postulantesPaginate->items();
+                $this->dataI = ['id', 'estudiante_id', 'cargo_id'];
+                $this->columns = ['id', 'estudiante', 'curso', 'cargo', 'accion'];
+                break;
+
+            case 'cargos':
+                $cargosPaginate = Cargo::simplePaginate(10, ['id', 'nombreCargo', 'descripcionCargo']);
+                $this->data = $cargosPaginate->items();
+                $this->dataI = ['id', 'nombreCargo', 'descripcionCargo'];
+                $this->columns = ['id', 'Nombre del cargo', 'Descripcion del cargo', 'accion'];
+                break;
+
 
             default:
                 $defaultPaginated = Role::simplePaginate(10, ['id', 'name']);
-                $this->data = $defaultPaginated->items();  // Solo los datos de la página actual
+                $this->data = $defaultPaginated->items();
                 $this->dataI = ['id', 'name'];
                 $this->columns = ['ID', 'Nombre del Rol', 'Acción'];
                 break;
         }
 
         // Devolver la colección paginada completa para la vista
-        return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated ?? $estudiantesPaginate ?? $docentesPaginate ?? null;
+        return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated ?? $estudiantesPaginate
+            ?? $docentesPaginate ?? $cargosPaginate ?? $postulantesPaginate ?? null;
     }
 
 

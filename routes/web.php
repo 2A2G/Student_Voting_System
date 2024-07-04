@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(
                 Route::get('/docente', [ViewController::class, 'docentes'])->name('viewDocentes');
             });
             Route::prefix('/sistemaVotacion')->group(function () {
+                Route::get('/cargos', [ViewController::class, 'cargos'])->name('viewCargos');
                 Route::get('/votacion', [ViewController::class, 'panelVotacion'])->name('viewPanelVotacion');
                 Route::get('/historial', [ViewController::class, 'historialVotacion'])->name('viewHistorialVotacion');
                 Route::get('/postulacion', [ViewController::class, 'postulacion'])->name('viewPostulacion');
@@ -31,4 +32,4 @@ Route::middleware(['auth'])->group(
             });
         });
     }
-);
+);  

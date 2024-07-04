@@ -16,7 +16,7 @@
                     Total de Estudiantes</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalEstudiantes->count() }}
+                    {{ $totalEstudiantes}}
                 </h4>
             </div>
         </div>
@@ -49,8 +49,9 @@
             <x-slot name="content">
                 <!-- Campo de nombre completo -->
                 <label class="block mb-2">Número de identidad</label>
-                <input type="text" wire:model.live="numeroIdentidad"
-                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
+                <input type="number" wire:model.live="numeroIdentidad"
+                    class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required min="0" step="1"
+                    oninput="this.value = this.value.slice(0, 10);">
                 @error('numeroIdentidad')
                     {{ $message }}
                 @enderror

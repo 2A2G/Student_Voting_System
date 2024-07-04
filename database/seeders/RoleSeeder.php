@@ -40,6 +40,10 @@ class RoleSeeder extends Seeder
             'edit permission' => ['super-admin', 'admin', 'secretaria'],
             'delete permission' => ['super-admin'],
 
+            'view cargos' => ['super-admin', 'admin', 'secretaria'],
+            'create cargos' => ['super-admin', 'admin'],
+            'edit cargos' => ['super-admin', 'admin'],
+
             'view curso' => ['super-admin', 'admin', 'secretaria', 'docente'],
             'create curso' => ['super-admin', 'admin'],
             'edit curso' => ['super-admin', 'admin', 'secretaria'],
