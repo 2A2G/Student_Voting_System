@@ -203,7 +203,7 @@
 
                     <form method="POST" action="{{ route('logout') }}" x-data id="logout-form">
                         @csrf
-                        <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white rounded-md p-2">
+                        <button type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                 viewBox="0 0 24 24" class="cursor-pointer">
                                 <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round"

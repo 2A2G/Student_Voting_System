@@ -7,10 +7,15 @@ use App\Models\Curso;
 use App\Models\Estudiante; // Asegúrate de tener el modelo Estudiante
 use App\Models\Postulante;
 use Livewire\Component;
+
 use Livewire\Attributes\Validate;
+use Livewire\WithFileUploads;
+
 
 class Postulacion extends Component
 {
+    use WithFileUploads;
+
     #[Validate('required')]
     #[Validate("unique:estudiantes,numeroIdentidad")]
 
@@ -18,6 +23,8 @@ class Postulacion extends Component
     public $numeroIdentidad;
     public $nombrePostulante;
     public $cargo;
+    public $imagen;
+
     public $cursoPostulante;
     public $mensajeError;
 
@@ -39,10 +46,6 @@ class Postulacion extends Component
     public function buscarEstudiante()
     {
         $estudiante = Estudiante::where('numeroIdentidad', $this->numeroIdentidad)->first();
-        if (Postulante::where('estudiante_id', $estudiante->id)->first()) {
-            $this->mensajeError = 'Este estudiante ya se encuentra postulado';
-            return;
-        }
 
         if ($estudiante) {
             $this->nombrePostulante = $estudiante->nombreEstudiante;
@@ -57,12 +60,24 @@ class Postulacion extends Component
             } else {
                 $this->cargo = 'Representante de curso';
             }
+            if (Postulante::where('estudiante_id', $estudiante->id)->first()) {
+                $this->mensajeError = 'Este estudiante ya se encuentra postulado';
+                return;
+            }
+            $this->dispatch('estudiante-encontrado', $estudiante,$this->imagen);
         } else {
             $this->nombrePostulante = '';
             $this->cursoPostulante = '';
             $this->cargo = '';
             $this->mensajeError = 'No existe ningún estudinate con este  número de identidad';
         }
+    }
+
+    
+    public function updatedImagen($propertys){
+        $this->dispatch('upload-image', $propertys->temporaryUrl());
+        // dd($this->imagen);
+
     }
 
     public function store()

@@ -63,9 +63,20 @@ class Table extends Component
                 break;
 
             case 'postulantes':
-                $postulantesPaginate = Postulante::simplePaginate(10, ['id', 'estudiante_id', 'cargo_id']);
+                $postulantesPaginate = Postulante::join('estudiantes', 'postulantes.estudiante_id', '=', 'estudiantes.id')
+                    ->join('cargos', 'postulantes.cargo_id', '=', 'cargos.id')
+                    ->join('cursos', 'estudiantes.curso_id', '=', 'cursos.id')
+
+                    ->select(
+                        'postulantes.id',
+                        'estudiantes.nombreEstudiante as estudiantes',
+                        'cursos.nombreCurso as cursos',
+                        'cargos.nombreCargo as cargos'
+                    )
+                    ->simplePaginate(10);
+
                 $this->data = $postulantesPaginate->items();
-                $this->dataI = ['id', 'estudiante_id', 'cargo_id'];
+                $this->dataI = ['id', 'estudiantes', 'cursos', 'cargos'];
                 $this->columns = ['id', 'estudiante', 'curso', 'cargo', 'accion'];
                 break;
 
