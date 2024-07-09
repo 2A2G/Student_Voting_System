@@ -7,6 +7,7 @@ use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\Postulante;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -42,23 +43,45 @@ class Table extends Component
                 break;
 
             case 'usuarios':
-                $usuariosPaginate = User::simplePaginate(10, ['id', 'name', 'email']);
+                $usuariosPaginate = User::join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                    ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+                    ->select('users.id', 'users.name', 'users.email', 'roles.name as role')
+                    ->simplePaginate(10);
+
                 $this->data = $usuariosPaginate->items();
-                $this->dataI = ['id', 'name', 'email'];
-                $this->columns = ['ID', 'Nombre Completo', 'Correo Electronico', 'Rol', 'Acción'];
+                $this->dataI = ['id', 'name', 'email', 'role'];
+                $this->columns = ['ID', 'Nombre del Usuario', 'Correo Electrónico', 'Rol', 'Acción'];
                 break;
 
             case 'estudiantes':
-                $estudiantesPaginate = Estudiante::simplePaginate(10, ['id', 'numero_identidad', 'nombre_estudiante', 'sexo', 'curso_id']);
+                $estudiantesPaginate = Estudiante::join('cursos', 'estudiantes.curso_id', '=', 'cursos.id')
+                    ->select(
+                        'estudiantes.id',
+                        'estudiantes.numero_identidad',
+                        'estudiantes.nombre_estudiante',
+                        'estudiantes.sexo',
+                        'cursos.nombre_curso as curso'
+                    )
+                    ->simplePaginate(10);
+
                 $this->data = $estudiantesPaginate->items();
-                $this->dataI = ['id', 'numero_identidad', 'nombre_estudiante', 'sexo', 'curso_id'];
+                $this->dataI = ['id', 'numero_identidad', 'nombre_estudiante', 'sexo', 'curso'];
                 $this->columns = ['ID', 'Número de Identidad', 'Nombre del Estudiante', 'Sexo', 'Curso', 'Acción'];
                 break;
 
             case 'docentes':
-                $docentesPaginate = Docente::simplePaginate(10, ['id', 'numero_identidad', 'asignatura', 'sexo', 'curso_id']);
+                $docentesPaginate = Docente::leftJoin('cursos', 'docentes.curso_id', '=', 'cursos.id')
+                    ->select(
+                        'docentes.id',
+                        'docentes.numero_identidad',
+                        'docentes.asignatura',
+                        'docentes.sexo',
+                        DB::raw('COALESCE(cursos.nombre_curso, \'No\') AS curso')
+                    )
+                    ->simplePaginate(10);
+
                 $this->data = $docentesPaginate->items();
-                $this->dataI = ['id', 'numero_identidad', 'asignatura', 'sexo', 'curso_id'];
+                $this->dataI = ['id', 'numero_identidad', 'asignatura', 'sexo', 'curso'];
                 $this->columns = ['ID', 'Número de Identidad', 'Nombre de la asignatura', 'Sexo', 'Director del Curso', 'Acción'];
                 break;
 
