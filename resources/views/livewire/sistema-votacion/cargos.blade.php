@@ -47,17 +47,17 @@
             <x-slot name="content">
                 <!--Nombre del cargo-->
                 <label class="block mb-2">Nombre del cargo</label>
-                <input type="text" wire:model.live="nombreCargo"
+                <input type="text" wire:model.live="nombre_cargo"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
-                @error('nombreCargo')
+                @error('nombre_crgo')
                     {{ $message }}
                 @enderror
 
                 <!--Descripcion del cargo-->
                 <label class="block mb-2">Descripción del cargo</label>
-                <input type="text" wire:model.live="descripcionCargo"
+                <input type="text" wire:model.live="descripcion_cargo"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
-                @error('descripcionCargo')
+                @error('descripcion_cargo')
                     {{ $message }}
                 @enderror
 

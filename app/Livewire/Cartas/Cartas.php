@@ -25,9 +25,9 @@ class Cartas extends Component
 
     #[On('estudiante-encontrado')]
     public function estudiante(Estudiante $estudiante){
-        $this->nombre = $estudiante->nombreEstudiante;
+        $this->nombre = $estudiante->nombre_estudiante;
         $this->cargo = "Representante de curso ";
-        $this->curso = $estudiante->curso->nombreCurso;
+        $this->curso = $estudiante->curso->nombre_curso;
         // $this->imagen = $estudiante->imagen;
     }
 

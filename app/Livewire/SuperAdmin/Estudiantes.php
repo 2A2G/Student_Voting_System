@@ -15,17 +15,17 @@ class Estudiantes extends Component
 
     public $open = false;
 
-    public $numeroIdentidad;
-    public $nombreEstudiante;
-    public $apellidoEstudiante;
+    public $numero_identidad;
+    public $nombre_estudiante;
+    public $apellido_estudiante;
     public $sexo = '';
     public $curso_id = '';
 
     public function clearInput()
     {
-        $this->numeroIdentidad = '';
-        $this->nombreEstudiante = '';
-        $this->apellidoEstudiante = '';
+        $this->numero_identidad = '';
+        $this->nombre_estudiante = '';
+        $this->apellido_estudiante = '';
         $this->sexo = '';
         $this->curso_id = '';
     }
@@ -35,22 +35,22 @@ class Estudiantes extends Component
     {
         $this->validate(
             [
-                'numeroIdentidad' => 'required',
-                'nombreEstudiante' => 'required',
-                'apellidoEstudiante' => 'required',
+                'numero_identidad' => 'required',
+                'nombre_estudiante' => 'required',
+                'apellido_estudiante' => 'required',
                 'sexo' => 'required',
                 'curso_id' => 'required'
             ]
         );
 
         $estudiante = new Estudiante();
-        $estudiante->numeroIdentidad = $this->numeroIdentidad;
-        $estudiante->nombreEstudiante = $this->nombreEstudiante;
-        $estudiante->apellidoEstudiante = $this->apellidoEstudiante;
+        $estudiante->numero_identidad = $this->numero_identidad;
+        $estudiante->nombre_estudiante = $this->nombre_estudiante;
+        $estudiante->apellido_estudiante = $this->apellido_estudiante;
         $estudiante->sexo = $this->sexo;
         $estudiante->curso_id = $this->curso_id;
         $estudiante->save();
-        $this->dispatch('post-created', name: "El estudiante " . $this->nombreEstudiante . ", creado satisfactoriamente");
+        $this->dispatch('post-created', name: "El estudiante " . $this->nombre_estudiante . ", creado satisfactoriamente");
         $this->clearInput();
         $this->open = false;
     }

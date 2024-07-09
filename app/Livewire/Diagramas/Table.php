@@ -49,16 +49,16 @@ class Table extends Component
                 break;
 
             case 'estudiantes':
-                $estudiantesPaginate = Estudiante::simplePaginate(10, ['id', 'numeroIdentidad', 'nombreEstudiante', 'sexo', 'curso_id']);
+                $estudiantesPaginate = Estudiante::simplePaginate(10, ['id', 'numero_identidad', 'nombre_estudiante', 'sexo', 'curso_id']);
                 $this->data = $estudiantesPaginate->items();
-                $this->dataI = ['id', 'numeroIdentidad', 'nombreEstudiante', 'sexo', 'curso_id'];
+                $this->dataI = ['id', 'numero_identidad', 'nombre_estudiante', 'sexo', 'curso_id'];
                 $this->columns = ['ID', 'Número de Identidad', 'Nombre del Estudiante', 'Sexo', 'Curso', 'Acción'];
                 break;
 
             case 'docentes':
-                $docentesPaginate = Docente::simplePaginate(10, ['id', 'numeroIdentidad', 'asignatura', 'sexo', 'curso_id']);
+                $docentesPaginate = Docente::simplePaginate(10, ['id', 'numero_identidad', 'asignatura', 'sexo', 'curso_id']);
                 $this->data = $docentesPaginate->items();
-                $this->dataI = ['id', 'numeroIdentidad', 'asignatura', 'sexo', 'curso_id'];
+                $this->dataI = ['id', 'numero_identidad', 'asignatura', 'sexo', 'curso_id'];
                 $this->columns = ['ID', 'Número de Identidad', 'Nombre de la asignatura', 'Sexo', 'Director del Curso', 'Acción'];
                 break;
 
@@ -69,9 +69,9 @@ class Table extends Component
 
                     ->select(
                         'postulantes.id',
-                        'estudiantes.nombreEstudiante as estudiantes',
-                        'cursos.nombreCurso as cursos',
-                        'cargos.nombreCargo as cargos'
+                        'estudiantes.nombre_estudiante as estudiantes',
+                        'cursos.nombre_curso as cursos',
+                        'cargos.nombre_cargo as cargos'
                     )
                     ->simplePaginate(10);
 
@@ -81,10 +81,17 @@ class Table extends Component
                 break;
 
             case 'cargos':
-                $cargosPaginate = Cargo::simplePaginate(10, ['id', 'nombreCargo', 'descripcionCargo']);
+                $cargosPaginate = Cargo::simplePaginate(10, ['id', 'nombre_cargo', 'descripcion_cargo']);
                 $this->data = $cargosPaginate->items();
-                $this->dataI = ['id', 'nombreCargo', 'descripcionCargo'];
+                $this->dataI = ['id', 'nombre_cargo', 'descripcion_cargo'];
                 $this->columns = ['id', 'Nombre del cargo', 'Descripcion del cargo', 'accion'];
+                break;
+
+            case 'anio_postulacion':
+                $postulacionAnios = Postulante::simplePaginate(10, ['id', 'anio_postulacion']);
+                $this->data = $postulacionAnios->items();
+                $this->dataI = ['id', 'anio_postulacion'];
+                $this->columns = ['id', 'Año de postulación', 'accion'];
                 break;
 
 
@@ -98,7 +105,7 @@ class Table extends Component
 
         // Devolver la colección paginada completa para la vista
         return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated ?? $estudiantesPaginate
-            ?? $docentesPaginate ?? $cargosPaginate ?? $postulantesPaginate ?? null;
+            ?? $docentesPaginate ?? $cargosPaginate ?? $postulantesPaginate ?? $postulacionAnios ?? null;
     }
 
 

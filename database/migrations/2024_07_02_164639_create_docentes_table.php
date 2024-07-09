@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('docentes', function (Blueprint $table) {
             $table->id();
-            $table->string('numeroIdentidad')->unique();
+            $table->string('numero_identidad')->unique();
             $table->foreignId('user_id');
             $table->foreignId('curso_id')->nullable();
             $table->string('asignatura');

@@ -17,23 +17,23 @@ class Postulacion extends Component
     use WithFileUploads;
 
     #[Validate('required')]
-    #[Validate("unique:estudiantes,numeroIdentidad")]
+    #[Validate("unique:estudiantes,numero_identidad")]
 
     public $open = false;
-    public $numeroIdentidad;
-    public $nombrePostulante;
+    public $numero_identidad;
+    public $nombre_postulante;
     public $cargo;
     public $imagen;
 
-    public $cursoPostulante;
+    public $curso_postulante;
     public $mensajeError;
 
     public function clearInput()
     {
-        $this->numeroIdentidad = '';
+        $this->numero_identidad = '';
         $this->cargo = '';
-        $this->cursoPostulante = '';
-        $this->nombrePostulante = '';
+        $this->curso_postulante = '';
+        $this->nombre_postulante = '';
         $this->mensajeError = '';
     }
 
@@ -45,17 +45,17 @@ class Postulacion extends Component
 
     public function buscarEstudiante()
     {
-        $estudiante = Estudiante::where('numeroIdentidad', $this->numeroIdentidad)->first();
+        $estudiante = Estudiante::where('numero_identidad', $this->numero_identidad)->first();
 
         if ($estudiante) {
-            $this->nombrePostulante = $estudiante->nombreEstudiante;
-            $this->cursoPostulante = $estudiante->curso->nombreCurso;
+            $this->nombre_postulante = $estudiante->nombre_estudiante;
+            $this->curso_postulante = $estudiante->curso->nombre_curso;
             $this->mensajeError = '';
 
-            if ($estudiante->curso->nombreCurso === 'Decimo') {
+            if ($estudiante->curso->nombre_curso === 'Decimo') {
                 $this->cargo = 'Contralor';
             }
-            if ($estudiante->curso->nombreCurso === 'Undecimo') {
+            if ($estudiante->curso->nombre_curso === 'Undecimo') {
                 $this->cargo = 'Personero';
             } else {
                 $this->cargo = 'Representante de curso';
@@ -64,17 +64,18 @@ class Postulacion extends Component
                 $this->mensajeError = 'Este estudiante ya se encuentra postulado';
                 return;
             }
-            $this->dispatch('estudiante-encontrado', $estudiante,$this->imagen);
+            $this->dispatch('estudiante-encontrado', $estudiante, $this->imagen);
         } else {
-            $this->nombrePostulante = '';
-            $this->cursoPostulante = '';
+            $this->nombre_postulante = '';
+            $this->curso_postulante = '';
             $this->cargo = '';
             $this->mensajeError = 'No existe ningún estudinate con este  número de identidad';
         }
     }
 
-    
-    public function updatedImagen($propertys){
+
+    public function updatedImagen($propertys)
+    {
         $this->dispatch('upload-image', $propertys->temporaryUrl());
         // dd($this->imagen);
 
@@ -83,34 +84,48 @@ class Postulacion extends Component
     public function store()
     {
         $this->validate([
-            'numeroIdentidad' => 'required'
+            'numero_identidad' => 'required',
+            'imagen' => 'required|image|max:1024',
         ]);
 
-        $newPostulante = Estudiante::where('numeroIdentidad', $this->numeroIdentidad)->first();
+        // Buscar el estudiante por el número de identidad con prefijo
+        $newPostulante = Estudiante::where('numero_identidad', $this->numero_identidad)->first();
 
-        $cursoPostulante = $newPostulante->curso_id;
+        // Obtener el cargo según el curso del estudiante
+        if ($newPostulante) {
+            $cursoPostulante = $newPostulante->curso_id;
 
-        if ($cursoPostulante === 1 || $cursoPostulante < 10) {
-            $this->cargo = 'Representante de Curso';
+            if ($cursoPostulante === 1 || $cursoPostulante < 10) {
+                $this->cargo = 'Representante de Curso';
+            } elseif ($cursoPostulante === 10) {
+                $this->cargo = 'Contralor';
+            } else {
+                $this->cargo = 'Personero';
+            }
 
-        } elseif ($cursoPostulante === 10) {
-            $this->cargo = 'Contralor';
+            // Mover la imagen a la carpeta de almacenamiento
+            $file = $this->imagen;
+            $fileName = 'P_' . $this->numero_identidad . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('storage/imagenes_postulantes'), $fileName);
 
+            // Crear el postulante en la tabla correspondiente
+            Postulante::create([
+                'estudiante_id' => $newPostulante->id,
+                'cargo_id' => Cargo::where('nombre_cargo', $this->cargo)->first()->id,
+                'fotografia_postulante' => $fileName,
+            ]);
+
+            // Despachar un evento o realizar alguna acción posterior
+            $this->dispatch('post-created', name: "La postulación de " . $newPostulante->nombre_estudiante . ", para el cargo de " . $this->cargo . " ha sido creada satisfactoriamente");
+
+            // Limpiar los campos y establecer el estado de apertura a falso
+            $this->open = false;
+            $this->clearInput();
         } else {
-            $this->cargo = 'Personero';
+            throw new \Exception('Estudiante no encontrado con el número de identidad proporcionado.');
         }
-
-        Postulante::create([
-            'estudiante_id' => $newPostulante->id,
-            'cargo_id' => Cargo::where('nombreCargo', $this->cargo)->first()->id
-        ]);
-
-
-        $this->dispatch('post-created', name: "La postulación de " . $newPostulante->nombreEstudiante . ", para el cargo de " . $this->cargo . " ha sido creada satisfactoriamente");
-
-        $this->open = false;
-        $this->clearInput();
     }
+
 
     public function render()
     {

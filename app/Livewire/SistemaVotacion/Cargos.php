@@ -9,13 +9,13 @@ class Cargos extends Component
 {
 
     public $open = false;
-    public $nombreCargo;
-    public $descripcionCargo;
+    public $nombre_cargo;
+    public $descripcion_cargo;
 
     public function clearInput()
     {
-        $this->nombreCargo = '';
-        $this->descripcionCargo = '';
+        $this->nombre_cargo = '';
+        $this->descripcion_cargo = '';
     }
 
     public function cambiar()
@@ -27,19 +27,19 @@ class Cargos extends Component
     {
         $this->validate(
             [
-                'nombreCargo' => 'required',
-                'descripcionCargo' => 'required'
+                'nombre_cargo' => 'required',
+                'descripcion_cargo' => 'required'
             ]
         );
 
         Cargo::create(
             [
-                'nombreCargo' => $this->nombreCargo,
-                'descripcionCargo' => $this->descripcionCargo
+                'nombre_cargo' => $this->nombre_cargo,
+                'descripcion_cargo' => $this->descripcion_cargo
             ]
         );
 
-        $this->dispatch('post-created', name: "El cargo " . $this->nombreCargo . ", creado satisfactoriamente");
+        $this->dispatch('post-created', name: "El cargo " . $this->nombre_cargo . ", creado satisfactoriamente");
         $this->clearInput();
         $this->open = false;
     }

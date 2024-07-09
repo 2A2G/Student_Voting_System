@@ -33,7 +33,7 @@ class CursoFactory extends Factory
         self::$indiceCurso++;
 
         return [
-            'nombreCurso' => $nombreCurso
+            'nombre_curso' => $nombreCurso
         ];
     }
 }

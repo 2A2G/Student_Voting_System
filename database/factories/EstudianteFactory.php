@@ -18,9 +18,9 @@ class EstudianteFactory extends Factory
     public function definition(): array
     {
         return [
-            'numeroIdentidad' => $this->faker->unique()->randomNumber(9),
-            'nombreEstudiante' => $this->faker->firstName(),
-            'apellidoEstudiante' => $this->faker->lastName(),
+            'numero_identidad' => $this->faker->unique()->randomNumber(9),
+            'nombre_estudiante' => $this->faker->firstName(),
+            'apellido_estudiante' => $this->faker->lastName(),
             'sexo' => $this->faker->randomElement(['Masculino', 'Femenino']),
             'curso_id' => $this->faker->randomElement(Curso::pluck('id')->toArray())
 

@@ -49,7 +49,7 @@
             <x-slot name="content">
                 <!-- Campo de numero de identidad -->
                 <label class="block mb-2">Número de identidad</label>
-                <input type="number" wire:model="numeroIdentidad" wire:change="buscarEstudiante"
+                <input type="number" wire:model="numero_identidad" wire:change="buscarEstudiante"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required min="0" step="1"
                     oninput="this.value = this.value.slice(0, 10);">
                 @error('numeroIdentidad')
@@ -61,12 +61,12 @@
 
                 <!-- Campo del nombre -->
                 <label class="block mb-2">Nombre del postulante</label>
-                <input type="text" wire:model="nombrePostulante"
+                <input type="text" wire:model="nombre_postulante"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" disabled>
 
                 <!-- Campo del curso -->
                 <label class="block mb-2">Curso</label>
-                <input type="text" wire:model="cursoPostulante"
+                <input type="text" wire:model="curso_postulante"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" disabled>
 
                 <!-- Campo del cargo -->
@@ -78,8 +78,6 @@
                 <div class="mb-4">
                     <label for="image-upload" class="block text-gray-700 font-bold mb-2">Imagen del postulante</label>
                     <div class="relative">
-
-                       
                         <input type="file" id="image-upload" wire:model="imagen" accept="image/*" class="hidden"
                             required>
                         <button type="button" onclick="document.getElementById('image-upload').click()"
@@ -92,9 +90,6 @@
                             </svg>
                             Subir imagen
                         </button>
-                        {{-- @if ($imagen)
-                            <img src="{{ $imagen->temporaryUrl() }}">
-                        @endif --}}
                         @error('imagen')
                             <span class="text-red-500 block mt-2">{{ $message }}</span>
                         @enderror
@@ -102,7 +97,7 @@
                 </div>
 
                 <!-- Componente de la carta -->
-                @livewire('cartas.cartas', ['nombre' => $nombrePostulante, 'curso' => $cursoPostulante, 'cargo' => $cargo, 'imagen' => $imagen])
+                @livewire('cartas.cartas', ['nombre' => $nombre_postulante, 'curso' => $curso_postulante, 'cargo' => $cargo, 'imagen' => $imagen])
 
                 <!-- Botón para guardar usuario -->
                 <br>

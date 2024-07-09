@@ -14,7 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('estudiante_id');
             $table->foreignId('cargo_id');
-            $table->integer('cantidadVotos')->default(0);
+            $table->integer('cantidad_votos')->default(0);
+            $table->string('fotografia_postulante');
+            $table->string('anio_postulacion')->default(date('Y'));
 
             $table->foreign('estudiante_id')->references('id')->on('estudiantes')->onDelete('cascade');
             $table->foreign('cargo_id')->references('id')->on('cargos')->onDelete('cascade');

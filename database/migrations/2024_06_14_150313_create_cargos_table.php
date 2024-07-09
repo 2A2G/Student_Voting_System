@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('cargos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreCargo');
-            $table->string('descripcionCargo');
+            $table->string('nombre_cargo');
+            $table->string('descripcion_cargo');
             $table->softDeletes();
             $table->timestamps();
         });

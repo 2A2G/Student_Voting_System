@@ -12,8 +12,8 @@ class Cargo extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'nombreCargo',        
-        'descripcionCargo',
+        'nombre_cargo',        
+        'descripcion_cargo',
     ];
 
     public function postulantes()

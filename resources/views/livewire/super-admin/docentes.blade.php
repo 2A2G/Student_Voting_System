@@ -48,16 +48,18 @@
             </x-slot>
             <x-slot name="content">
                 <!-- Campo de nombre completo -->
-                <input type="number" wire:model.live="numeroIdentidad"
+                <label class="block mb-2">Numero de Identificación</label>
+
+                <input type="number" wire:model.live="numero_identidad"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required min="0" step="1"
                     oninput="this.value = this.value.slice(0, 10);">
-                @error('numeroIdentidad')
+                @error('numero_identidad')
                     {{ $message }}
                 @enderror
                 <label class="block mb-2">Nombre Completo</label>
-                <input type="text" wire:model.live="nameDocente"
+                <input type="text" wire:model.live="name_docente"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
-                @error('nombreEstudiante')
+                @error('name_docente')
                     {{ $message }}
                 @enderror
 
@@ -98,7 +100,7 @@
                 <select wire:model="curso_id" class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
                     <option value="">Seleccione un curso</option>
                     @foreach ($cursos as $curso)
-                        <option value="{{ $curso['id'] }}">{{ $curso['nombreCurso'] }}</option>
+                        <option value="{{ $curso['id'] }}">{{ $curso['nombre_curso'] }}</option>
                     @endforeach
                 </select>
 

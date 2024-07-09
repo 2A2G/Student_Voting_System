@@ -49,22 +49,22 @@
             <x-slot name="content">
                 <!-- Campo de nombre completo -->
                 <label class="block mb-2">Número de identidad</label>
-                <input type="number" wire:model.live="numeroIdentidad"
+                <input type="number" wire:model.live="numero_identidad"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required min="0" step="1"
                     oninput="this.value = this.value.slice(0, 10);">
-                @error('numeroIdentidad')
+                @error('numero_identidad')
                     {{ $message }}
                 @enderror
                 <label class="block mb-2">Nombre</label>
-                <input type="text" wire:model.live="nombreEstudiante"
+                <input type="text" wire:model.live="nombre_estudiante"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
-                @error('nombreEstudiante')
+                @error('nombre_estudiante')
                     {{ $message }}
                 @enderror
                 <label class="block mb-2">Apellido</label>
-                <input type="text" wire:model.live="apellidoEstudiante"
+                <input type="text" wire:model.live="apellido_estudiante"
                     class="border border-gray-300 rounded px-3 py-2 w-full mb-3" required>
-                @error('apellidoEstudiante')
+                @error('apellido_estudiante')
                     {{ $message }}
                 @enderror
 
@@ -81,7 +81,7 @@
                 <select wire:model="curso_id" class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
                     <option value="" selected disabled>Seleccione un curso</option>
                     @foreach ($cursos as $curso)
-                        <option value="{{ $curso['id'] }}">{{ $curso['nombreCurso'] }}</option>
+                        <option value="{{ $curso['id'] }}">{{ $curso['nombre_curso'] }}</option>
                     @endforeach
                 </select>
 

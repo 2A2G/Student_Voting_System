@@ -12,9 +12,9 @@ class Estudiante extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'numeroIdentidad',
-        'nombreEstudiante',
-        'apellidoEstudiante',
+        'numero_identidad',
+        'nombre_estudiante',
+        'apellido_estudiante',
         'sexo',
         'curso_id',
     ];

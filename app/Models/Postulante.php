@@ -15,7 +15,9 @@ class Postulante extends Model
     protected $fillable = [
         'estudiante_id',
         'cargo_id',
-        'cantidadVotos'
+        'cantidad_votos',
+        'fotografia_postulante',
+        'anio_postulacion',
     ];
 
     public function cargo()
