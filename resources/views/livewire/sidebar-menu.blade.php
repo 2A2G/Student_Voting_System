@@ -98,16 +98,16 @@
                                     <p class="text-base leading-4  ">Usuarios</p>
                                 </a>
                             @endcan
-                            @can('view estudiantes')
-                                <a href="{{ route('viewEstudiantes') }}"
-                                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52">
+                            @can('view docentes')
+                                <a href="{{ route('viewCursos') }}"
+                                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24">
                                         <path fill="#dc2626" fill-rule="evenodd"
-                                            d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm3 8a3 3 0 1 1 6 0a3 3 0 0 1-6 0m-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1"
+                                            d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007c2.759-.038 4.5.16 6.956.791zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    <p class="text-base leading-4  ">Estudiantes</p>
+                                    <p class="text-base leading-4 ">Cursos</p>
                                 </a>
                             @endcan
                             @can('view docentes')
@@ -120,6 +120,18 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                     <p class="text-base leading-4 ">Docentes</p>
+                                </a>
+                            @endcan
+                            @can('view estudiantes')
+                                <a href="{{ route('viewEstudiantes') }}"
+                                    class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2 w-full md:w-52">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24">
+                                        <path fill="#dc2626" fill-rule="evenodd"
+                                            d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zm3 8a3 3 0 1 1 6 0a3 3 0 0 1-6 0m-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <p class="text-base leading-4  ">Estudiantes</p>
                                 </a>
                             @endcan
                         </div>

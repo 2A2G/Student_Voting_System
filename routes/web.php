@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(
             Route::prefix('/gestion')->group(function () {
                 Route::get('/rolesPermisos', [ViewController::class, 'rolesPermisos'])->name('rolesPermisos');
                 Route::get('/usuarios', [ViewController::class, 'usuarios'])->name('usuarios');
+                Route::get('/cursos', [ViewController::class, 'cursos'])->name('viewCursos');
                 Route::get('/estudiante', [ViewController::class, 'estudiante'])->name('viewEstudiantes');
                 Route::get('/docente', [ViewController::class, 'docentes'])->name('viewDocentes');
             });

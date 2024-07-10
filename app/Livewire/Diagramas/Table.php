@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Diagramas;
 
+use App\Livewire\SuperAdmin\Cursos;
 use App\Models\Cargo;
+use App\Models\Curso;
 use App\Models\Docente;
 use App\Models\Estudiante;
 use App\Models\Postulante;
@@ -79,6 +81,23 @@ class Table extends Component
                 $this->data = $usuariosPaginate->items();
                 $this->dataI = ['id', 'name', 'email', 'role', 'estado'];
                 $this->columns = ['ID', 'Nombre del Usuario', 'Correo Electrónico', 'Rol', 'estado', 'Acción'];
+                break;
+
+            case 'cursos':
+                $cursosPaginate = Curso::withTrashed()
+                    ->leftJoin('estudiantes', 'cursos.id', '=', 'estudiantes.curso_id')
+                    ->select(
+                        'cursos.id',
+                        'cursos.nombre_curso',
+                        DB::raw('count(estudiantes.id) as cantidad_estudiantes'),
+                        DB::raw('CASE WHEN cursos.deleted_at IS NULL THEN \'Activo\' ELSE \'Eliminado\' END as estado')
+                    )
+                    ->groupBy('cursos.id', 'cursos.nombre_curso', 'cursos.deleted_at')
+                    ->simplePaginate(10);
+
+                $this->data = $cursosPaginate->items();
+                $this->dataI = ['id', 'nombre_curso', 'cantidad_estudiantes', 'estado'];
+                $this->columns = ['ID', 'Nombre del Curso', 'Cantidad de Estudiantes', 'Estado', 'Acción'];
                 break;
 
 
@@ -179,7 +198,8 @@ class Table extends Component
 
         // Devolver la colección paginada completa para la vista
         return $rolesPaginated ?? $permissionsPaginated ?? $usuariosPaginate ?? $defaultPaginated ?? $estudiantesPaginate
-            ?? $docentesPaginate ?? $cargosPaginate ?? $postulantesPaginate ?? $postulacionAnios ?? null;
+            ?? $docentesPaginate ?? $cargosPaginate ?? $postulantesPaginate ?? $postulacionAnios ?? $cursosPaginate
+            ?? null;
     }
 
 

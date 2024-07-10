@@ -16,12 +16,16 @@
                         @livewire('super-admin.usuarios')
                     @break
 
-                    @case('estudiante')
-                        @livewire('super-admin.estudiantes')
+                    @case('cursos')
+                        @livewire('super-admin.cursos')
                     @break
 
                     @case('docentes')
                         @livewire('super-admin.docentes')
+                    @break
+
+                    @case('estudiante')
+                        @livewire('super-admin.estudiantes')
                     @break
 
                     <!--Sistema de Votación-->

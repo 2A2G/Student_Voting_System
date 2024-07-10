@@ -34,15 +34,21 @@ class ViewController extends Controller
         return view('livewire.dashboard', compact('caso'));
     }
 
-    public function estudiante()
+    public function cursos()
     {
-        $caso = 'estudiante';
+        $caso = 'cursos';
         return view('livewire.dashboard', compact('caso'));
     }
 
     public function docentes()
     {
         $caso = 'docentes';
+        return view('livewire.dashboard', compact('caso'));
+    }
+
+    public function estudiante()
+    {
+        $caso = 'estudiante';
         return view('livewire.dashboard', compact('caso'));
     }
 

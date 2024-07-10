@@ -12,7 +12,7 @@ class Curso extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'nombreCurso'
+        'nombre_curso'
     ];
 
     public function estudiantes()
