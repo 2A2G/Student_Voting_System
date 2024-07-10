@@ -110,7 +110,7 @@ class Postulacion extends Component
 
             // Almacenar la imagen en la carpeta de almacenamiento
             $fileName = 'P_' . $this->numero_identidad . '.' . $this->imagen->getClientOriginalExtension();
-            $this->imagen->storeAs('imagenes_postulantes', $fileName);
+            $this->imagen->storeAs('public/imagenes_postulantes', $fileName);
 
             // Crear el postulante en la tabla correspondiente
             $nuevoPostulante = new Postulante();

@@ -57,7 +57,7 @@
                 <!-- Botón para guardar usuario -->
                 <br>
                 <button wire:click="store" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                    Guardar Estudiante
+                    Guardar Curso
                 </button>
             </x-slot>
 
