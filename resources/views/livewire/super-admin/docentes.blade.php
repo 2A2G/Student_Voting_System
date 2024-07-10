@@ -96,7 +96,7 @@
                 </select>
 
                 <!-- Campo de selección de curso -->
-                <label class="block mb-2">Seleccione el curso</label>
+                <label class="block mb-2">¿Es director de curso?</label>
                 <select wire:model="curso_id" class="border border-gray-300 rounded px-3 py-2 w-full mb-3">
                     <option value="">Seleccione un curso</option>
                     @foreach ($cursos as $curso)

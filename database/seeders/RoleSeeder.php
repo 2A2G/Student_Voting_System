@@ -25,17 +25,29 @@ class RoleSeeder extends Seeder
 
         // Crear permisos y asignarlos a roles
         $permissions = [
-            'view user' => ['super-admin', 'admin'],
+            'view dashboard' => ['super-admin', 'admin', 'secretaria'],
+
+            'view users' => ['super-admin', 'admin'],
             'create user' => ['super-admin', 'admin'],
             'edit user' => ['super-admin', 'admin'],
             'delete user' => ['super-admin'],
 
-            'view role' => ['super-admin', 'admin'],
+            'view estudiantes' => ['super-admin', 'admin', 'secretaria', 'docente'],
+            'create estudiante' => ['super-admin', 'admin', 'secretaria'],
+            'edit estudiante' => ['super-admin', 'admin', 'secretaria'],
+            'delete estudiante' => ['super-admin'],
+
+            'view docentes' => ['super-admin', 'admin', 'secretaria', 'docente'],
+            'create docente' => ['super-admin', 'admin'],
+            'edit docente' => ['super-admin', 'admin'],
+            'delete docente' => ['super-admin'],
+
+            'view roles' => ['super-admin', 'admin'],
             'create role' => ['super-admin', 'admin'],
             'edit role' => ['super-admin', 'admin'],
             'delete role' => ['super-admin'],
 
-            'view permission' => ['super-admin', 'admin'],
+            'view permissions' => ['super-admin', 'admin'],
             'create permission' => ['super-admin', 'admin'],
             'edit permission' => ['super-admin', 'admin', 'secretaria'],
             'delete permission' => ['super-admin'],
@@ -44,14 +56,10 @@ class RoleSeeder extends Seeder
             'create cargos' => ['super-admin', 'admin'],
             'edit cargos' => ['super-admin', 'admin'],
 
-            'view curso' => ['super-admin', 'admin', 'secretaria', 'docente'],
+            'view cursos' => ['super-admin', 'admin', 'secretaria', 'docente'],
             'create curso' => ['super-admin', 'admin'],
             'edit curso' => ['super-admin', 'admin', 'secretaria'],
             'delete curso' => ['super-admin'],
-
-            'create cargo' => ['super-admin', 'admin'],
-            'edit cargo' => ['super-admin', 'admin'],
-            'delete cargo' => ['super-admin'],
 
             'view panel votacion' => ['super-admin', 'admin', 'secretaria', 'docente'],
             'view postulacion' => ['super-admin', 'admin', 'secretaria'],

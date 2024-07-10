@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('sexo');
             $table->foreignId('curso_id');
             $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });

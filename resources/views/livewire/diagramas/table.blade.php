@@ -21,12 +21,27 @@
                             <tr
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 @foreach ($dataI as $n)
-                                    <td class="px-6 py-4">
-                                        {{ $row[$n] }}
-                                    </td>
+                                    @if ($n === 'estado')
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="{{ $row['estado'] === 'Eliminado' ? 'text-red-500' : 'text-blue-500' }}">
+                                                {{ $row['estado'] }}
+                                            </span>
+                                        </td>
+                                    @else
+                                        <td class="px-6 py-4">
+                                            {{ $row[$n] }}
+                                        </td>
+                                    @endif
                                 @endforeach
-                                <td>
-                                    edit
+                                <td class="px-6 py-4">
+                                    <button
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                        Editar
+                                    </button>
+                                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                        Eliminar
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach

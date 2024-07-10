@@ -11,7 +11,7 @@ use Livewire\Component;
 class Docentes extends Component
 {
     #[Validate('required')]
-    #[Validate("Unique:docentes,numeroIdentidad")]
+    #[Validate("Unique:docentes,numero_identidad")]
 
     public $open = false;
     public $name;
@@ -51,6 +51,7 @@ class Docentes extends Component
         $userDocente->name = $this->name_docente;
         $userDocente->email = $this->email;
         $userDocente->password = bcrypt('password');
+        $userDocente->assignRole('docente');
         $userDocente->save();
 
         $docente->user_id = $userDocente->id;

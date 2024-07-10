@@ -60,10 +60,15 @@ class Postulacion extends Component
             } else {
                 $this->cargo = 'Representante de curso';
             }
-            if (Postulante::where('estudiante_id', $estudiante->id)->first()) {
+            if (
+                Postulante::where('estudiante_id', $estudiante->id)
+                    ->where('anio_postulacion', date('Y'))
+                    ->exists()
+            ) {
                 $this->mensajeError = 'Este estudiante ya se encuentra postulado';
                 return;
             }
+
             $this->dispatch('estudiante-encontrado', $estudiante, $this->imagen);
         } else {
             $this->nombre_postulante = '';
@@ -103,17 +108,16 @@ class Postulacion extends Component
                 $this->cargo = 'Personero';
             }
 
-            // Mover la imagen a la carpeta de almacenamiento
-            $file = $this->imagen;
-            $fileName = 'P_' . $this->numero_identidad . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('storage/imagenes_postulantes'), $fileName);
+            // Almacenar la imagen en la carpeta de almacenamiento
+            $fileName = 'P_' . $this->numero_identidad . '.' . $this->imagen->getClientOriginalExtension();
+            $this->imagen->storeAs('imagenes_postulantes', $fileName);
 
             // Crear el postulante en la tabla correspondiente
-            Postulante::create([
-                'estudiante_id' => $newPostulante->id,
-                'cargo_id' => Cargo::where('nombre_cargo', $this->cargo)->first()->id,
-                'fotografia_postulante' => $fileName,
-            ]);
+            $nuevoPostulante = new Postulante();
+            $nuevoPostulante->estudiante_id = $newPostulante->id;
+            $nuevoPostulante->cargo_id = Cargo::where('nombre_cargo', $this->cargo)->first()->id;
+            $nuevoPostulante->fotografia_postulante = $fileName;
+            $nuevoPostulante->save();
 
             // Despachar un evento o realizar alguna acción posterior
             $this->dispatch('post-created', name: "La postulación de " . $newPostulante->nombre_estudiante . ", para el cargo de " . $this->cargo . " ha sido creada satisfactoriamente");

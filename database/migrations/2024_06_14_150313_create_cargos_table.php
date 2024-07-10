@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('nombre_cargo');
             $table->string('descripcion_cargo');
+
             $table->softDeletes();
             $table->timestamps();
         });

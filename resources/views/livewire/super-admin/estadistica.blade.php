@@ -52,7 +52,7 @@
                     Docentes</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    3,462</h4>
+                    {{ $totalDocentes }}</h4>
             </div>
 
         </div>
