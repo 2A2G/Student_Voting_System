@@ -4,9 +4,17 @@
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::prefix('')->group(
+    function () {
+        Route::get('/', function () {
+            return view('livewire.welcome');
+        });
+        Route::get('inefrapasa/estudiante', [ViewController::class, 'sveEstudinate'])->name('sveEstudinate');
+
+
+
+    }
+);
 
 
 
@@ -28,9 +36,8 @@ Route::middleware(['auth'])->group(
                 Route::get('/votacion', [ViewController::class, 'panelVotacion'])->name('viewPanelVotacion');
                 Route::get('/historial', [ViewController::class, 'historialVotacion'])->name('viewHistorialVotacion');
                 Route::get('/postulacion', [ViewController::class, 'postulacion'])->name('viewPostulacion');
-
-
             });
         });
     }
-);  
+);
+

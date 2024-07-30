@@ -79,4 +79,15 @@ class ViewController extends Controller
     }
 
 
+
+    // Sistema no autenticado, solo para estudiantes
+    public function sveEstudinate()
+    {
+        $caso = 'estudiante';
+
+        // dd($caso);
+        return view('livewire.invitado.dashboard', compact('caso'));
+    }
+
+
 }

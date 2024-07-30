@@ -98,7 +98,7 @@
                                     <p class="text-base leading-4  ">Usuarios</p>
                                 </a>
                             @endcan
-                            @can('view docentes')
+                            @can('view cursos')
                                 <a href="{{ route('viewCursos') }}"
                                     class="flex justify-start items-center space-x-6 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-gray-700 text-gray-400 rounded px-3 py-2  w-full md:w-52">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
