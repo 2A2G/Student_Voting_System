@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('')->group(
     function () {
-        Route::get('/', function () {
-            return view('livewire.welcome');
-        });
+        Route::get('inefrapasa', [ViewController::class, 'welcome'])->name('welcome');
+        Route::get('/', [ViewController::class, 'isLogged'])->name('home');
         Route::get('inefrapasa/estudiante', [ViewController::class, 'sveEstudinate'])->name('sveEstudinate');
 
 

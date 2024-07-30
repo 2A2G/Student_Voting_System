@@ -48,6 +48,7 @@
                     @default
                         @livewire('super-admin.estadistica')
                 @endswitch
+                <x-footer />
             </div>
         </div>
     </x-app-layout>

@@ -15,6 +15,22 @@ class ViewController extends Controller
         // $this->middleware('can:view docentes')->only('docentes');
     }
 
+
+
+
+    public function isLogged()
+    {
+        if (Auth::check()) {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('welcome');
+        }
+    }
+
+    public function welcome()
+    {
+       return view('livewire.welcome');
+    }
     // Gestion
     public function index()
     {

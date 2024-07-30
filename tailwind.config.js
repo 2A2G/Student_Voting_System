@@ -23,6 +23,9 @@ export default {
                 lobster: ["Lobster", "cursive"],
                 playfair: ['"Playfair Display"', "serif"],
             },
+            colors: {
+                "custom-transparent": "rgba(255, 255, 255, 0.5)", // blanco con 50% de opacidad
+            },
         },
     },
 
