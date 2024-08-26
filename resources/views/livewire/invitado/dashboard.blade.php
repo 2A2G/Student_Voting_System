@@ -4,9 +4,13 @@
             <div class="mt-12 ml-4">
                 @switch($caso)
                     @case('estudiante')
-                        @livewire('invitado.estudiante')
+                        {{-- @livewire('invitado.estudiante') --}}
+                        @livewire('invitado.votacion')
                     @break
 
+                    @case('votacion')
+                    @break
+                    
                     @default
                         @livewire('invitado.dashboard')
                 @endswitch

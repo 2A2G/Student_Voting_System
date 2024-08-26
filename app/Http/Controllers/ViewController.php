@@ -29,7 +29,7 @@ class ViewController extends Controller
 
     public function welcome()
     {
-       return view('livewire.welcome');
+        return view('livewire.welcome');
     }
     // Gestion
     public function index()
@@ -69,7 +69,6 @@ class ViewController extends Controller
     }
 
     // Sistema de Votacion
-
     public function cargos()
     {
         $caso = 'cargos';
@@ -101,7 +100,13 @@ class ViewController extends Controller
     {
         $caso = 'estudiante';
 
-        // dd($caso);
+        return view('livewire.invitado.dashboard', compact('caso'));
+    }
+
+    public function votacion()
+    {
+        $caso = 'votacion';
+
         return view('livewire.invitado.dashboard', compact('caso'));
     }
 
