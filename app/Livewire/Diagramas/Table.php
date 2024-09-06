@@ -26,6 +26,11 @@ class Table extends Component
 
     public $roles;
     public $case;
+    public $open;
+    public  $type;
+
+    
+    // public $eliminar = true;
 
     public function datos()
     {
@@ -43,7 +48,7 @@ class Table extends Component
                     ]);
                 $this->data = $rolesPaginated->items();
                 $this->dataI = ['id', 'name', 'estado'];
-                $this->columns = ['ID', 'Nombre del Rol', 'estado', 'Acción'];
+                $this->columns = ['ID', 'Nombre del Rol', 'estado'];
                 break;
 
 
@@ -203,7 +208,19 @@ class Table extends Component
     }
 
 
+    public function openModal($dato,$row){
 
+        // $columns.map(function($column){
+        //     if($column == 'action'){
+        //         $this->eliminar = $row[$column] == 'Activo' ? true : false;
+     
+        //     }
+        // });
+        $this->type = $dato == 'editar' ? 'Editar' : 'Eliminar';
+        $this->open = true;
+
+
+    }
     public function mount($columns = [], $data = [])
     {
         $this->datos();
