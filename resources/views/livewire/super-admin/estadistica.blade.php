@@ -15,7 +15,8 @@
                 </p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalUserP }}</h4>
+                    <livewire:animated-counter :targetCount="$totalUserP" />
+                </h4>
             </div>
         </div>
         <div class="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md">
@@ -33,7 +34,8 @@
                     Estudiantes</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalEstudinates }}</h4>
+                    <livewire:animated-counter :targetCount="$totalEstudinates" />
+                </h4>
             </div>
 
         </div>
@@ -50,9 +52,9 @@
             <div class="p-4 text-right">
                 <p class="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">
                     Docentes</p>
-                <h4
-                    class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalDocentes }}</h4>
+                <h4 class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
+                    <livewire:animated-counter :targetCount="$totalDocentes"/>
+                </h4>
             </div>
 
         </div>
@@ -71,7 +73,7 @@
                 </p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalRoles }}</h4>
+                    <livewire:animated-counter :targetCount="$totalRoles" /></h4>
             </div>
 
         </div>

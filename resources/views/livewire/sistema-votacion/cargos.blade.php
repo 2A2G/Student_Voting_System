@@ -14,7 +14,7 @@
                     Total de Cargos</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $cargos }}
+                    <livewire:animated-counter :targetCount="$cargos" />
                 </h4>
             </div>
         </div>

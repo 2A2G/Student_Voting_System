@@ -18,7 +18,7 @@
                     Total de Registros</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalPostulantesAnios }}</h4>
+                    <livewire:animated-counter :targetCount="$totalPostulantesAnios" /></h4>
                 </h4>
             </div>
         </div>

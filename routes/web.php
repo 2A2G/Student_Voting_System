@@ -10,9 +10,6 @@ Route::prefix('')->group(
         Route::get('/', [ViewController::class, 'isLogged'])->name('home');
         Route::get('inefrapasa/estudiante', [ViewController::class, 'sveEstudinate'])->name('sveEstudinate');
         Route::get('inefrapasa/votacion', [ViewController::class, 'votacion'])->name('sveVotacion');
-
-
-
     }
 );
 
@@ -20,7 +17,6 @@ Route::prefix('')->group(
 
 Route::middleware(['auth'])->group(
     function () {
-
         Route::prefix('inefrapasa')->group(function () {
             Route::get('/dashboard', [ViewController::class, 'index'])->name('dashboard');
 

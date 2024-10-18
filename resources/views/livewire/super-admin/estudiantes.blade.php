@@ -16,7 +16,7 @@
                     Total de Estudiantes</p>
                 <h4
                     class="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-blue-gray-900">
-                    {{ $totalEstudiantes }}
+                   <livewire:animated-counter :targetCount="$totalEstudiantes" />
                 </h4>
             </div>
         </div>
